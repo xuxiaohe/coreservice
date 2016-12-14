@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>橄榄传媒 | LINECMS 网站内容管理系统 - 用户登录</title>
+<script type="text/javascript" th:src="@{/js/jquery-1.8.0.min.js}" ></script>
+<script type="text/javascript" th:src="@{/js/yanzheng.js}" ></script>
+<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" />
+	<style type="text/css">
+		.code
+		{
+
+			font-family:Arial;
+			font-style:italic;
+			color:blue;
+			font-size:20px;
+			border:0;
+			padding:2px 3px;
+			letter-spacing:3px;
+			font-weight:bolder;
+			float:left;
+			cursor:pointer;
+			width:120px;
+			height:10px;
+			text-align:center;
+			vertical-align:middle;
+		}
+		a
+		{
+			text-decoration:none;
+			font-size:12px;
+			color:#288bc4;
+		}
+		a:hover
+		{
+			text-decoration:underline;
+		}
+	</style>
+</head>
+
+<body class="login_page" onload="createCode()">
+<form th:action="@{/admin/userlogin}" method="post">
+	<div class="login">
+		<div class="login-body">
+			<div class="login_con fn_clear">
+				<div class="login_logo fn_left"> <a href="http://ganline.com/" target="_blank"> <img class="login_img" th:src="@{/images/admin-login-logo.gif}" alt="网站内容管理系统"></img> </a> </div>
+				<div class="default-form fn_right">
+					<h2>用户登录</h2>
+					<div class="item">
+						<label class="zh">帐号：</label>
+						<div class="input input_bg" id="username" >
+							<input class="txt" type="text" name="name"/>
+						</div>
+					</div>
+					<div class="item">
+						<label class="zh">密码</label>
+						<div class="input input_bg" id="password" >
+							<input class="txt" type="password" name="password" />
+						</div>
+					</div>
+					<div class="item capcode">
+
+						<div class="code" id="checkCode" onclick="createCode()" ></div>
+						<a href="#" onclick="createCode()">看不清换一张</a>
+
+						<div class="capcode-con">
+							 验证码：<input  type="text"  id="inputCode" />
+					</div>
+					<div class="input login_btn">
+						<input class="btn" type="submit" onclick="return validateCode();" value="提交" />
+					</div>
+						<label th:text="${error}"></label>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+</form>
+</body>
+</html>

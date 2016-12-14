@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<title>首页测试</title>
+</head>
+<body>
+	<td th:text="${message}">Red 红星</td>
+	<p th:text="|Hello, ${message}|">111</p>
+	<p th:text="'Hello1,' +${message}">111</p>
+	<a th:href="@{http://www.sina.cn}">新浪</a>&nbsp;&nbsp;<a th:href="@{login}">相对路径</a>
+	
+	<!-- 运算符 -->
+	<!-- 定义局部变量 -->
+	<p th:with="isEven=(${count}%2 == 1)">
+		<span th:text="${isEven}">数据</span>
+	</p>
+	<!-- 定义条件变量 -->
+	<p th:if="${count} == 21">条件判断</p>
+	<p th:text="'model is :' +(${execMode} == 'dev' ? 'Development' : 'Production')"></p>
+	
+	<!-- 条件 -->
+	<p th:href="@{login}" th:unless="${login} == false">条件Unless</p>
+	<p th:href="@{login}" th:if="${login}">条件Unless</p>
+	<div th:switch="${role}">
+		<p th:case="admin">User is admin</p>
+		<p th:case="manager">User is manager</p>
+		<p th:case="*">User is other</p>
+	</div>
+	
+	<!-- 循环 -->
+	 <h1>Product list</h1>
+  	 <table>
+	    <tr>
+	      <th>NAME</th>
+	      <th>PRICE</th>
+	      <th>IN STOCK</th>
+	    </tr>
+	    <tr th:each="prod : ${prods}">
+	      <td th:text="${prod.name}">Onions</td>
+	      <td th:text="${prod.price}">2.41</td>
+	      <td th:text="${prod.inStock}?#{true}:#{false}">yes</td>
+	      <!-- <td th:text="${#bools.isTrue(prod.inStock)}">yes</td> -->
+	    </tr>
+  	</table>
+  	
+  	<p/>
+  	<a th:href="model">模板测试</a>
+</body>
+<script th:inline="javascript">
+	var m = [[${message}]] ;
+	console.log(m+"===") ;
+</script>
+</html>

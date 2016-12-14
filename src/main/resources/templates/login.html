@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8"></meta>
+	<title>那啥运营管理平台OSS</title>
+	<link th:href="@{/css/login.css}" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" th:src="@{/js/jquery-1.8.2.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/jquery.JPlaceholder.js}" charset="UTF-8"></script>
+	<script language="JavaScript">
+		<!--
+		if(top!=self)
+			if(self!=top) top.location=self.location;
+		//-->
+	</script>
+</head>
+<body>
+<div class="login_wrap">
+	<div class="log_logo"><img th:src="@{/images/log_logo.jpg}" /></div>
+	<div class="login_box">
+		<form role="form" th:action="@{/testweb/userlogin}" method="post">
+			<div class="textline"><input name="name" id="name" type="text" value="" placeholder="账号" /></div>
+			<div class="textline"><input name="password" id="password" type="password" value="" placeholder="密码" /><!-- <a href="forget_password.html">忘记密码?</a> --></div>
+			<p id="error_msg"></p>
+			<!-- <p class="autologin"><i id="autoflag" class="checkbox" onclick="setAuto(this)"></i> 下次自动登录</p> -->
+			<!-- <input type="button" value="立即登录" class="login_btn" onclick="login()"/> -->
+			<input  type="submit" value="立即登录" class="login_btn" />
+		</form>
+	</div>
+</div>
+<script language="JavaScript">
+	<!--
+	var loging = false;
+	function setAuto(dom){
+		var o = $(dom);
+		if(o.hasClass('select')) o.removeClass('select');
+		else o.addClass('select');
+	}
+	function login(){
+		var name = $('#username').val();
+		var pwd = $('#password').val();
+		if(name==''){
+			$('#error_msg').html('·请输入用户名');
+			return false;
+		}
+
+		if(pwd==''){
+			$('#error_msg').html('·请输入密码');
+			return false;
+		}
+
+		$('#error_msg').html('');
+
+		autologin(name, pwd);
+
+		return true;
+	}
+	function autologin(user, pwd){
+		if(loging==true) return false;
+
+		loging = true;
+		//ajax登录
+		//$.post('', { name: name, pwd: pwd},
+		//function(msg){
+		loging = false;
+
+		//登录成功则执行
+		if($('#autoflag').hasClass('select')) var auto = 1;
+		else auto=0;
+		setCookie('sha_auto_login', auto, 10);
+		setCookie('sha_login_user', user, 10);
+		setCookie('sha_login_pwd', pwd, 10);
+		//跳转
+		//window.location.href="";
+		//});
+	}
+	function getCookie(name)
+	{
+		var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+		if(arr=document.cookie.match(reg))
+			return unescape(arr[2]);
+		else
+			return null;
+	}
+	function setCookie(c_name, value, expiredays){
+		var exdate=new Date();
+		exdate.setDate(exdate.getDate() + expiredays);
+		document.cookie=c_name+ "=" + escape(value) + ((expiredays==null) ? "" : ";expires="+exdate.toGMTString());
+	}
+
+	//自动登录
+	var auto = getCookie('sha_auto_login');
+	if(auto == 1) {
+		var u = getCookie('sha_login_user');
+		var p = getCookie('sha_login_pwd');
+		autologin(u,p);
+	}
+	//-->
+</script>
+</body>
+</html>
