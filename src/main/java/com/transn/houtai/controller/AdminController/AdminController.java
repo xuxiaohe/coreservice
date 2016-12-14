@@ -60,20 +60,29 @@ public class AdminController {
 	}
 
 
-	@RequestMapping("login")
+	@RequestMapping("/login")
 	public String login() {
 		return "admin/login" ;
 	}
 	
+
 	/*
-	 * 打招呼
-	 */
-	@RequestMapping("hello")
-	@ResponseBody
-	public String hello() {
-		return "Hello Thymeleaf模板工具！" ;
+         * 横幅列表
+         */
+	@RequestMapping("hengfulist")
+	public String hengfulist() {
+		return "/admin/hengfulist" ;
 	}
 
+
+
+	/*
+         * 横幅添加
+         */
+	@RequestMapping("addhengfu")
+	public String addhengfu() {
+		return "/admin/addhengfu" ;
+	}
 
 
 
@@ -84,7 +93,7 @@ public class AdminController {
 		if ("123".equals(name)) {
 			model.addAttribute("name",name);
 			model.addAttribute("passwd",password);
-			return "userinfo";
+			return "/admin/hengfulist";
 		}
 		else {
 			model.addAttribute("error","信息错误");

@@ -1,13 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>幻灯片管理</title>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<link href="../images/style.css" rel="stylesheet" type="text/css" />
-<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link th:href="@{/images/style.css}" rel="stylesheet" type="text/css" />
+<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" />
 <!-- js -->
-<script type="text/javascript" src="js/jquery-1.8.0.min.js" ></script>
-<script type="text/javascript" src="js/admin.min.js" ></script>
+<script type="text/javascript" th:src="@{/js/jquery-1.8.0.min.js}" ></script>
+<script type="text/javascript" th:src="@{/js/admin.min.js}" ></script>
 </head>
 
 <body>
@@ -30,8 +30,8 @@
 				<div>
 					<dl id="iteam-lantern">
 						<dt> <a href="javascript:;">焦点横幅</a> <i class="ico"></i> </dt>
-						<dd> <a href="横幅列表.html" >横幅管理</a> </dd>
-						<dd> <a href="添加横幅.html">添加横幅</a> </dd>
+						<dd> <a th:href="@{/admin/hengfulist}" >横幅管理</a> </dd>
+						<dd> <a th:href="@{/admin/addhengfu}">添加横幅</a> </dd>
 					</dl>
 					<dl id="iteam-article">
 						<dt > <a href="javascript:;">文章管理</a> <i class="ico"></i> </dt>
@@ -71,7 +71,7 @@
 					<tr>
 						<td>33</td>
 						<td>-</td>
-						<td><img src='../uploads/image/160613114602.jpg' style='width:200px; height:auto;'> <img src='../uploads/image/160607051134_2.jpg' style='width:auto; height:100px;'></td>
+						<td><img src='../uploads/image/160613114602.jpg' style='width:200px; height:auto;'/> <img src='../uploads/image/160607051134_2.jpg' style='width:auto; height:100px;'/></td>
 						<td>生效</td>
 						<td><a href="lanternE.php�nId=15.html">编辑</a> | <a href="lanternM.php�delId=15.html" onclick="confirm('确定要删除吗？');">删除</a></td>
 					</tr>
