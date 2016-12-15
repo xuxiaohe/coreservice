@@ -30,13 +30,15 @@
 				<div>
 					<dl id="iteam-lantern">
 						<dt> <a href="javascript:;">焦点横幅</a> <i class="ico"></i> </dt>
-						<dd> <a href="hengfulist.html" >横幅管理</a> </dd>
-						<dd> <a href="addhengfu.html">添加横幅</a> </dd>
+						<dd> <a href="横幅列表.html" >横幅管理</a> </dd>
+						<dd> <a href="添加横幅.html">添加横幅</a> </dd>
 					</dl>
 					<dl id="iteam-article">
 						<dt > <a href="javascript:;">文章管理</a> <i class="ico"></i> </dt>
 						<dd class='on' > <a href="添加文章.html">添加文章</a> </dd>
 						<dd> <a href="文章列表.html">文章列表</a> </dd>
+						<dd> <a href="文章分类.html">文章分类</a> </dd>
+						<dd> <a href="添加分类.html">添加分类</a> </dd>
 					</dl>
 				</div>
 				<dl id="iteam-comments" class="frap" >
@@ -51,30 +53,31 @@
 					<dt > <a href="javascript:;">SEO</a> <i class="ico"></i> </dt>
 					<dd> <a href="基本规则设置.html">基本规则设置</a> </dd>
 					<dd> <a href="URL重写.html">URL重写</a> </dd>
-					<dd> <a href="生成HTM.html">生成HTML</a> </dd>
+					<dd> <a href="生成HTML.html">生成HTML</a> </dd>
 					<dd> <a href="友情链接.html">友链列表</a> </dd>
 				</dl>
 			</div>
 		</div>
 		<div class="main_body">
-			<form id="sform" action="option-html.php" method="post">
+			<form id="sform" action="lantern.php" method="post">
 				<table class="inputform" cellpadding="1" cellspacing="1">
-					<tbody>
-						<tr>
-							<td class="label">生成HTML选项</td>
-							<td class="input"><select name="genoption">
-									<option value="all">全部生成</option>
-									<option value="home">首页</option>
-									<option value="article">文章</option>
-									<option value="product">产品</option>
-									<option value="category">分类(包括文章分类和产品分类)</option>
-									<option value="maps">文章地图、留言页</option>
-								</select></td>
-						</tr>
-					</tbody>
+					<tr class="th">
+						<td>编号</td>
+						<td>标题</td>
+						<td>图片</td>
+						<td>状态</td>
+						<td>操作</td>
+					</tr>
+					<tr>
+						<td>33</td>
+						<td>-</td>
+						<td><img src='../uploads/image/160613114602.jpg' style='width:200px; height:auto;'> <img src='../uploads/image/160607051134_2.jpg' style='width:auto; height:100px;'></td>
+						<td>生效</td>
+						<td><a href="lanternE.php�nId=15.html">编辑</a> | <a href="lanternM.php�delId=15.html" onclick="confirm('确定要删除吗？');">删除</a></td>
+					</tr>
 				</table>
-				<div class="inputsubmit p10">
-					<input id="submitbtn" type="submit" class="subtn" value="提交">
+				<div class="inputsubmit" style="padding-left:90px;">
+					<input id="submitbtn" type="submit" class="subtn" value="提交" />
 				</div>
 			</form>
 		</div>

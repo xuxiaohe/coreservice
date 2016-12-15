@@ -28,65 +28,42 @@
 				</dl>
 				<div>
 					<dl id="iteam-lantern">
-						<dt> <a href="javascript:;">焦点横幅</a> <i class="ico"></i> </dt>
-						<dd> <a th:href="@{/admin/hengfulist}" >横幅管理</a> </dd>
-						<dd> <a th:href="@{/admin/addhengfu}">添加横幅</a> </dd>
+						<dt> <a href="javascript:;">广告设置</a> <i class="ico"></i> </dt>
+						<dd> <a th:href="@{/admin/manger/gethengfulist}" >广告位</a> </dd>
+						<dd> <a th:href="@{/admin/manger/addhengfu}">添加横幅</a> </dd>
 					</dl>
 					<dl id="iteam-article">
-						<dt > <a href="javascript:;">文章管理</a> <i class="ico"></i> </dt>
-						<dd class='on' > <a href="添加文章.html">添加文章</a> </dd>
-						<dd> <a href="文章列表.html">文章列表</a> </dd>
-						<dd> <a href="文章分类.html">文章分类</a> </dd>
-						<dd> <a href="添加分类.html">添加分类</a> </dd>
+						<dt > <a href="javascript:;">新闻管理</a> <i class="ico"></i> </dt>
+						<dd class='on' > <a href="4发布_修改.html">添加文章</a> </dd>
+						<dd> <a href="2内容管理.html">内容管理</a> </dd>
 					</dl>
 				</div>
-				<dl id="iteam-comments" class="frap" >
-					<dt > <a href="javascript:;">留言管理</a> <i class="ico"></i> </dt>
-					<dd> <a href="留言列表.html">留言列表</a> </dd>
-				</dl>
-				<dl id="iteam-links" class="frap">
-					<dt> <a href="javascript:;">友情链接</a> <i class="ico"></i> </dt>
-					<dd> <a href="友情链接.html">友情链接管理</a> </dd>
-				</dl>
-				<dl>
-					<dt > <a href="javascript:;">SEO</a> <i class="ico"></i> </dt>
-					<dd> <a href="基本规则设置.html">基本规则设置</a> </dd>
-					<dd> <a href="URL重写.html">URL重写</a> </dd>
-					<dd> <a href="生成HTML.html">生成HTML</a> </dd>
-					<dd> <a href="友情链接.html">友链列表</a> </dd>
+				<dl id="iteam-comments" >
+					<dt > <a href="javascript:;">招商留言</a> <i class="ico"></i> </dt>
+					<dd> <a href="7招商留言.html">留言列表</a> </dd>
 				</dl>
 			</div>
 		</div>
 		<div class="main_body">
-			<form id="sform" action="lantern.php" method="post">
+			<form id="sform" th:action="@{/admin/manger/addhengfuinfo(id=${data.id})}" method="post" enctype="multipart/form-data">
+				<input type="hidden" th:value="${data.image}" name="oldimage"/>
 				<table class="inputform" cellpadding="1" cellspacing="1">
 					<tbody>
 						<tr>
 							<td class="label">广告标题</td>
-							<td class="input"><input type="text" class="txt" name="adtitle" style="background-image: "/></td>
+							<td class="input"><input type="text" th:value="${data.title}" class="txt" name="title" style="background-image: "/></td>
 						</tr>
 						<tr>
 							<td class="label">广告地址</td>
-							<td class="input"><input type="text" class="txt" name="adurl"/></td>
+							<td class="input"><input type="text" th:value="${data.url}" class="txt" name="url"/></td>
 						</tr>
 						<tr>
 							<td class="label">广告图片</td>
-							<td class="input"><input type="file" class="txt" style="width:280px;" name="productthumb"/></td>
-						</tr>
-						<tr>
-							<td class="label">广告图片-手机端</td>
-							<td class="input"><input type="file" class="txt" style="width:280px;" name="productthumb_wap"/></td>
-						</tr>
-						<tr>
-							<td class="label">是否生效</td>
-							<td class="input"><input name="adstatus" type="radio" value="ok" checked=""/>
-								生效
-								<input name="adstatus" type="radio" value="hide"/>
-								失效</td>
+							<td class="input"><input type="file"  class="txt" style="width:280px;" name="image"/></td>
 						</tr>
 						<tr>
 							<td class="label">广告排序</td>
-							<td class="input"><input type="text" class="txt" name="adorder"/></td>
+							<td class="input"><input type="text" th:value="${data.orders}" class="txt" name="order"/></td>
 						</tr>
 					</tbody>
 				</table>

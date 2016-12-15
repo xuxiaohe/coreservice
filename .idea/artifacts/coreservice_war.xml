@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="coreservice:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="coreservice-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="coreservice:war exploded" />
+    </root>
+  </artifact>
+</component>
