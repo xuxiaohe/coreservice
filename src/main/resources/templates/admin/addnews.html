@@ -1,13 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>幻灯片管理</title>
+<title>添加文章</title>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<link th:href="@{/images/style.css}" rel="stylesheet" type="text/css" />
-<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" />
-<!-- js -->
-<script type="text/javascript" th:src="@{/js/jquery-1.8.0.min.js}" ></script>
-<script type="text/javascript" th:src="@{/js/admin.min.js}" ></script>
+	<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" />
+	<!-- js -->
+	<script type="text/javascript" th:src="@{/js/jquery-1.8.0.min.js}" ></script>
+	<script type="text/javascript" th:src="@{/js/admin.min.js}" ></script>
 </head>
 
 <body>
@@ -20,7 +19,7 @@
 			<i> ，欢迎使用网站管理系统 </i> </div>
 		<div class="fn_right admin_btn"> <a class="a1" href="cleancache.php.html">清除缓存</a><a class="a2" href="logout.php.html">注销</a> </div>
 	</div>
-	<div class="admin_nav"> 当前位置：<a href="index.php.html">后台</a> > 幻灯片管理 </div>
+	<div class="admin_nav"> 当前位置：<a href="index.php.html">后台</a> > 添加文章 </div>
 	<div class="main admin_content fn_clear">
 		<div class="admin_menu" id="main_nav">
 			<div class="menu_dl">
@@ -46,34 +45,60 @@
 			</div>
 		</div>
 		<div class="main_body">
-			<form id="sform" action="lantern.php" method="post">
+			<form id="sform" th:action="@{/admin/news/addnewinfo}" method="post">
 				<table class="inputform" cellpadding="1" cellspacing="1">
 					<tr>
-						<td class="label">广告标题</td>
-						<td class="input"><input type="text" class="txt" name="adtitle" /></td>
+						<td class="label">文章标题</td>
+						<td class="input"><input type="text" class="txt" name="title" style="width:400px;" /></td>
 					</tr>
 					<tr>
-						<td class="label">广告地址</td>
-						<td class="input"><input type="text" class="txt" name="adurl" /></td>
+						<td class="label">所属分类</td>
+						<td class="input">
+							<!--<select th:field="${data.category}" class="form-control" th:switch="${data.category}"-->
+								<!--data-required="true">-->
+								<!--<option value="男" th:case="‘男‘" th:selected="selected" >男</option>-->
+								<!--<option value="女" th:case="‘女‘" th:selected="selected" >女</option>-->
+								<!--<option value="">未分类-默认</option>-->
+							<!--</select>-->
+
+
+
+							<select th:field="*{categorys}" th:remove="all-but-first" id="category">
+								<option th:each="category : ${categorys}"
+										th:value="${category.id}" th:text="${category.name}">Credit card</option>
+								<option>Another payment method</option>
+								<option>Another payment method</option>
+							</select>
+
+						</td>
 					</tr>
 					<tr>
-						<td class="label">广告图片</td>
+						<td class="label">上传封面图</td>
 						<td class="input"><input type="file" class="txt" style="width:280px;" name="productthumb" /></td>
 					</tr>
-					<tr>
-						<td class="label">广告图片-手机端</td>
-						<td class="input"><input type="file" class="txt" style="width:280px;" name="productthumb_wap" /></td>
+					<tr style="display:none">
+						<td class="label">发布状态</td>
+						<td class="input"><label>
+								<input type="radio" name="radiobutton" value="ok" checked="checked" />
+								发布 </label>
+							<label>
+								<input type="radio" name="radiobutton" value="no"/>
+								不发布 </label></td>
 					</tr>
 					<tr>
-						<td class="label">是否生效</td>
-						<td class="input"><input name="adstatus" type="radio" value="ok" checked="checked"/>
-							生效
-							<input name="adstatus" type="radio" value="hide"/>
-							失效</td>
+						<td class="label">频道置顶</td>
+						<td class="input"><label>
+								<input type="radio" name="top" value="0" />
+								置顶 </label>
+							<label>
+								<input type="radio" name="top" value="1" checked="checked"/>
+								不置顶 </label></td>
 					</tr>
 					<tr>
-						<td class="label">广告排序</td>
-						<td class="input"><input type="text" class="txt" name="adorder" /></td>
+						<td class="label">文章内容</td>
+						<td class="input">
+							<textarea name="content" id="" style="width:80%"  rows="10"></textarea>
+						</td>
 					</tr>
 				</table>
 				<div class="inputsubmit">

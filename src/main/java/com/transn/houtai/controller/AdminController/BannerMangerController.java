@@ -19,7 +19,9 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @org.springframework.stereotype.Controller
@@ -67,7 +69,15 @@ public class BannerMangerController {
          * 横幅添加
          */
     @RequestMapping("addhengfu")
-    public String addhengfu() {
+    public String addhengfu(Model model) {
+        BannerManger b =new BannerManger();
+        b.setId(0);
+        b.setImage("");
+        b.setUrl("");
+        b.setTitle("");
+        b.setOrders(0);
+
+        model.addAttribute("data", b);
         return "/admin/addhengfu";
     }
 
@@ -76,7 +86,7 @@ public class BannerMangerController {
          * 横幅添加
          */
     @RequestMapping("addhengfuinfo")
-    public String addhengfuinfo(HttpServletRequest request, @RequestParam MultipartFile image) throws IOException {
+    public String addhengfuinfo(Model model,HttpServletRequest request, @RequestParam MultipartFile image) throws IOException {
         String title = request.getParameter("title");
         String url = request.getParameter("url");
         String order = request.getParameter("order");
@@ -104,7 +114,16 @@ public class BannerMangerController {
             BannerManger bannerManger = bannerMangerService.saveBanner(b);
 
 
-        return "/admin/addhengfu";
+        QueryModelMul dm = new QueryModelMul();
+        List<String> sort = new ArrayList<String>();
+        sort.add("time");
+        dm.setSort(sort);
+        Pageable pageable = PageRequestTools.pageRequesMake(dm);
+        Page<BannerManger> bannerMangers = bannerMangerService.getallBannerByPage(pageable);
+        model.addAttribute("data", bannerMangers);
+
+
+        return "/admin/hengfulist";
     }
 
 

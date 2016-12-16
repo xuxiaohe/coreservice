@@ -1,13 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>文章列表</title>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<link href="../images/style.css" rel="stylesheet" type="text/css" />
-<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" />
 <!-- js -->
-<script type="text/javascript" src="js/jquery-1.8.0.min.js" ></script>
-<script type="text/javascript" src="js/admin.min.js" ></script>
+	<script type="text/javascript" th:src="@{/js/jquery-1.8.0.min.js}" ></script>
+	<script type="text/javascript" th:src="@{/js/admin.min.js}" ></script>
 </head>
 <body>
 <div class="wrap admin_page">
@@ -22,10 +21,31 @@
 	<div class="admin_nav"> 当前位置：<a href="index.php.html">后台</a> > 文章列表 </div>
 	<div class="main admin_content fn_clear">
 		<div class="admin_menu" id="main_nav">
+			<div class="menu_dl">
+				<dl id="iteam-home" class="frap sole">
+					<dt> <a href="#" target="_blank">回到网站首页</a> <i class="ico"></i> </dt>
+				</dl>
+				<div>
+					<dl id="iteam-lantern">
+						<dt> <a href="javascript:;">广告设置</a> <i class="ico"></i> </dt>
+						<dd> <a th:href="@{/admin/manger/gethengfulist}" >广告位</a> </dd>
+						<dd> <a th:href="@{/admin/manger/addhengfu}">添加横幅</a> </dd>
+					</dl>
+					<dl id="iteam-article">
+						<dt > <a href="javascript:;">新闻管理</a> <i class="ico"></i> </dt>
+						<dd class='on' > <a th:href="@{/admin/news/addnew}">添加文章</a> </dd>
+						<dd> <a th:href="@{/admin/news/newslist}">内容管理</a> </dd>
+					</dl>
+				</div>
+				<dl id="iteam-comments" >
+					<dt > <a href="javascript:;">招商留言</a> <i class="ico"></i> </dt>
+					<dd> <a href="7招商留言.html">留言列表</a> </dd>
+				</dl>
+			</div>
 		</div>
 		<div class="main_body">
 			<div class="category">
-				<a href="#">未分类-默认</a>
+				<a href="#" >未分类-默认</a>
 				<a href="#" class="on">集团动态</a>
 				<a href="#">公司动态</a>
 				<a href="#">关于我们</a>
@@ -40,11 +60,11 @@
 					<td class="w10">发布时间</td>
 					<td class="w10">相关操作</td>
 				</tr>
-				<tr>
-					<td><input id="slt105" type="checkbox" name="chk[]" value="105"></td>
-					<td><a href="#" target="_blank">这是文章标题</a></td>
-					<td><a href="#">集团动态</a></td>
-					<td><span title="该文章已发布">2012-01-01</span></td>
+				<tr th:each="product : ${data.content}">
+					<td><input id="slt105" type="checkbox" name="chk[]" value="105"/></td>
+					<td th:text="${product.title}"><a href="#" target="_blank">这是文章标题</a></td>
+					<td th:text="${product.content}"><a href="#">集团动态</a></td>
+					<td  th:text="${#dates.format(product.time,'yyyy-MM-dd')}"><span title="该文章已发布" >2012-01-01</span></td>
 					<td><a href="#"> 修改</a></td>
 				</tr>
 			</table>
@@ -82,7 +102,7 @@
 			</ul>
 		</div>
 		<div class="btn_list">
-			<input type="submit" class="subtn" value="提交">
+			<input type="submit" class="subtn" value="提交"/>
 			<a href="javascript:;" class="close_mini_popup">取消</a>
 		</div>
 	</div>
