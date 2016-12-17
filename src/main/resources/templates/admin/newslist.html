@@ -44,14 +44,13 @@
 			</div>
 		</div>
 		<div class="main_body">
-			<div class="category">
-				<a href="#" >未分类-默认</a>
-				<a href="#" class="on">集团动态</a>
-				<a href="#">公司动态</a>
-				<a href="#">关于我们</a>
-				<a href="#">招商信息</a>
-				<a href="javascript:;" class="manage"><i></i>类目管理</a>
-			</div>
+
+			<!--<div>-->
+				<!--<a href="#" >未分类-默认</a>-->
+				<!--<label th:text="${categorys}"></label>-->
+				<!--<a href="javascript:;" class="manage"><i></i>类目管理</a>-->
+			<!--</div>-->
+
 			<table class="inputform" cellpadding="1" cellspacing="1">
 				<tr class="th">
 					<td class="w10">选择</td>
@@ -93,12 +92,9 @@
 		<h3>类目管理</h3>
 		<p>删除已创建类目后，原类目下文章会移入“未分类”类目下，并不在前台显示</p>
 		<div class="category_list">
-			<ul>
+			<ul th:each="category:${categorylist}">
 				<li>未分类-默认</li>
-				<li><input type="text" class="text" value="集团动态" /> 	<a href="javascript:;" class="del">删除</a></li>
-				<li><input type="text" class="text" value="公司动态" />		<a href="javascript:;" class="del">删除</a></li>
-				<li><input type="text" class="text" value="关于我们" />		<a href="javascript:;" class="del">删除</a></li>
-				<li><input type="text" class="text" value="招商信息" />		<a href="javascript:;" class="del">删除</a></li>
+				<li><input type="text" class="text" value="" th:text="${category.name}"/> 	<a href="javascript:;" class="del">删除</a></li>
 			</ul>
 		</div>
 		<div class="btn_list">

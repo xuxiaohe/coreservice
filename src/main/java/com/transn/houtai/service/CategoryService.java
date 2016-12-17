@@ -32,6 +32,12 @@ public class CategoryService {
     }
 
 
+    public Categorys getCategory(int id){
+        Categorys byId = categoryRepository.findById(id);
+        return byId;
+    }
+
+
     public List<Categorys> getAllCategory(){
         List one = (List) categoryRepository.findAll();
         return one;

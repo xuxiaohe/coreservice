@@ -64,4 +64,17 @@ public class AdminloginController {
     }
 
 
+
+
+
+    @RequestMapping(value = "/userlogout")
+    public String userlogout(HttpServletRequest request) {
+            request.getSession().setAttribute("name", "");
+            return "/admin/login";
+        }
+
+
+
+
+
 }

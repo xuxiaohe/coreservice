@@ -45,7 +45,7 @@
 			</div>
 		</div>
 		<div class="main_body">
-			<form id="sform" th:action="@{/admin/news/addnewinfo}" method="post">
+			<form id="sform" th:action="@{/admin/news/addnewinfo}" method="post" enctype="multipart/form-data">
 				<table class="inputform" cellpadding="1" cellspacing="1">
 					<tr>
 						<td class="label">文章标题</td>
@@ -63,18 +63,24 @@
 
 
 
-							<select th:field="*{categorys}" th:remove="all-but-first" id="category">
+							<select name="ischoose" >
 								<option th:each="category : ${categorys}"
 										th:value="${category.id}" th:text="${category.name}">Credit card</option>
-								<option>Another payment method</option>
-								<option>Another payment method</option>
 							</select>
+
+							<!--<select name="ischoose" >-->
+
+								<!--<option value="IdAsc">ID升序</option>-->
+
+								<!--<option value="IdDesc">ID降序</option>-->
+
+							<!--</select>-->
 
 						</td>
 					</tr>
 					<tr>
 						<td class="label">上传封面图</td>
-						<td class="input"><input type="file" class="txt" style="width:280px;" name="productthumb" /></td>
+						<td class="input"><input type="file" class="txt" style="width:280px;" name="image" /></td>
 					</tr>
 					<tr style="display:none">
 						<td class="label">发布状态</td>

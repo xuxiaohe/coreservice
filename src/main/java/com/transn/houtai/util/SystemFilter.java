@@ -39,7 +39,7 @@ public class SystemFilter implements Filter {
         StringBuffer url = httpRequest.getRequestURL();
         RestTemplate restTemplate = new RestTemplate();
         //System.out.println("================="+session.getAttribute("name"));
-        if(name==null){
+        if(StringUtil.isBlank(name)){
             wrapper.sendRedirect("/mineproject/login");
             return;
         }

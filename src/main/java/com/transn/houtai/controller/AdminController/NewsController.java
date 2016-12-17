@@ -50,11 +50,21 @@ public class NewsController {
         Pageable pageable = PageRequestTools.pageRequesMake(dm);
         Page<News> bannerMangers = newsService.getallNewsByPage(pageable);
         List<Categorys> allCategory = categoryService.getAllCategory();
-        model.addAttribute("data", bannerMangers);
-        model.addAttribute("categorys", allCategory);
+        String ca="";
+        if (allCategory.size()!=0) {
+            for(Categorys s: allCategory){
+                ca+=s.getName()+"  、";
+            }
+        }
 
+        model.addAttribute("data", bannerMangers);
+        model.addAttribute("categorys", ca);
+        model.addAttribute("categorylist", allCategory);
         return "/admin/newslist";
     }
+
+
+
 
 
 
@@ -73,25 +83,39 @@ public class NewsController {
              * 添加新闻
              */
     @RequestMapping("addnewinfo")
-    public String addnewinfo(Model model,HttpServletRequest request) {
+    public String addnewinfo(Model model,HttpServletRequest request,@RequestParam MultipartFile image) throws IOException {
         String title = request.getParameter("title");
-        String category = request.getParameter("category");
-        String image = request.getParameter("image");
+        String categoryid = request.getParameter("ischoose");
         String top = request.getParameter("top");
         String content = request.getParameter("content");
         String isshow = request.getParameter("isshow");
 
+        Categorys category = categoryService.getCategory(Integer.parseInt(categoryid));
         News n=new News();
-        n.setImage(image);
+        if(category!=null){
+            n.setCategory(category.getName());
+            n.setCategoryid(Integer.parseInt(categoryid));
+        }
+        String filePath1 = FileUpload.uploadFile(image, request);
+        n.setImage(filePath1);
         n.setTitle(title);
-        n.setCategory(category);
         n.setContent(content);
         n.setTop(Integer.parseInt(top));
-
+        n.setTime(System.currentTimeMillis());
 
         News news = newsService.saveBanner(n);
 
-        return "/admin/addnews";
+        QueryModelMul dm = new QueryModelMul();
+        List<String> sort = new ArrayList<String>();
+        sort.add("time");
+        dm.setSort(sort);
+        Pageable pageable = PageRequestTools.pageRequesMake(dm);
+        Page<News> bannerMangers = newsService.getallNewsByPage(pageable);
+        List<Categorys> allCategory = categoryService.getAllCategory();
+        model.addAttribute("data", bannerMangers);
+        model.addAttribute("categorys", allCategory);
+
+        return "/admin/newslist";
     }
 
 

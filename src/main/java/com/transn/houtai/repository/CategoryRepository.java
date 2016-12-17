@@ -15,5 +15,5 @@ import org.springframework.stereotype.Repository;
 @Qualifier(value = "categoryRepository")
 public interface CategoryRepository extends CrudRepository<Categorys, Long> {
 
-
+    public Categorys findById(int id);
 }
