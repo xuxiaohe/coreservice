@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>添加文章</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+	<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" />
+<!-- js -->
+	<script type="text/javascript" th:src="@{/js/jquery-1.8.0.min.js}" ></script>
+	<script type="text/javascript" th:src="@{/js/admin.min.js}" ></script>
+</head>
+
+<body>
+<div class="wrap admin_page">
+	<div class="header fn_clear">
+		<div class="fn_left"><!-- 
+			<a href="http://ganline.com/" target="_blank" class="logo">
+				<img src="img/admin-logo.gif" alt="LINECMS 橄榄传媒网站内容管理系统">
+			</a> --> 
+			<i> ，欢迎使用网站管理系统 </i> </div>
+		<div class="fn_right admin_btn"> <a class="a1" href="cleancache.php.html">清除缓存</a><a class="a2" href="logout.php.html">注销</a> </div>
+	</div>
+	<div class="admin_nav"> 当前位置：<a href="index.php.html">后台</a> > 添加文章 </div>
+	<div class="main admin_content fn_clear">
+		<div class="admin_menu" id="main_nav">
+			<div class="menu_dl">
+				<dl id="iteam-home" class="frap sole">
+					<dt> <a href="#" target="_blank">回到网站首页</a> <i class="ico"></i> </dt>
+				</dl>
+				<div>
+					<dl id="iteam-lantern">
+						<dt> <a href="javascript:;">广告设置</a> <i class="ico"></i> </dt>
+						<dd> <a th:href="@{/admin/manger/gethengfulist}" >广告位</a> </dd>
+						<dd> <a th:href="@{/admin/manger/addhengfu}">添加横幅</a> </dd>
+					</dl>
+					<dl id="iteam-article">
+						<dt > <a href="javascript:;">新闻管理</a> <i class="ico"></i> </dt>
+						<dd class='on' > <a th:href="@{/admin/news/addnew}">添加文章</a> </dd>
+						<dd> <a th:href="@{/admin/news/newslist}">内容管理</a> </dd>
+					</dl>
+				</div>
+				<dl id="iteam-comments" >
+					<dt > <a href="javascript:;">招商留言</a> <i class="ico"></i> </dt>
+					<dd> <a href="7招商留言.html">留言列表</a> </dd>
+				</dl>
+			</div>
+		</div>
+		<div class="main_body">
+			<form id="sform" th:action="@{/admin/news/addnewinfo}" method="post" enctype="multipart/form-data">
+				<table class="inputform" cellpadding="1" cellspacing="1">
+					<tr>
+						<td class="label">文章标题</td>
+						<td class="input"><input type="text" class="txt" name="title" style="width:400px;" /></td>
+					</tr>
+					<tr>
+						<td class="label">所属分类</td>
+						<td class="input"><select name="ischoose" >
+							<option th:each="category : ${categorys}"
+									th:value="${category.id}" th:text="${category.name}">Credit card</option>
+						</select></td>
+					</tr>
+					<tr>
+						<td class="label">上传封面图</td>
+						<td class="input"><input type="file" class="txt" style="width:280px;" name="image" /></td>
+					</tr>
+					<tr style="display:none">
+						<td class="label">发布状态</td>
+						<td class="input"><label>
+								<input type="radio" name="isshow" value="1" checked="checked" />
+								发布 </label>
+							<label>
+								<input type="radio" name="isshow" value="0"/>
+								不发布 </label></td>
+					</tr>
+					<tr>
+						<td class="label">频道置顶</td>
+						<td class="input"><label>
+								<input type="radio" name="top" value="1" />
+								置顶 </label>
+							<label>
+								<input type="radio" name="top" value="0" checked="checked"/>
+								不置顶 </label></td>
+					</tr>
+					<tr>
+						<td class="label">文章内容</td>
+						<td class="input" style="width:80%">
+							<!-- 加载编辑器的容器 -->
+						    <script id="container" name="content" type="text/plain"></script>
+						    <!-- 配置文件 -->
+						    <script type="text/javascript" th:src="@{/ueditor/ueditor.config.js}"></script>
+						    <!-- 编辑器源码文件 -->
+						    <script type="text/javascript" th:src="@{/ueditor/ueditor.all.js}"></script>
+						    <!-- 实例化编辑器 -->
+						    <script type="text/javascript">
+						        var ue = UE.getEditor('container',{
+						        	initialFrameHeight : 300
+						        });
+						    </script>
+						</td>
+					</tr>
+				</table>
+				<div class="inputsubmit">
+					<input id="submitbtn" type="submit" class="subtn" value="提交" />
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+</html>

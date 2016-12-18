@@ -251,15 +251,18 @@ body {
   border-bottom: 1px solid #e8e8e8;
   padding: 6px 0px 6px 15px;
   border-right: 1px solid #e8e8e8;
+}
+.inputform .label {
+
   white-space: nowrap;
 }
 .inputform td:last-child {
   border-right: none;
 }
-.inputform td {
+/*.inputform td {
   max-width: 100px;
   overflow: hidden;
-}
+}*/
 .inputform tr:nth-child(odd) {
   background: #f9f9f9;
 }
@@ -508,7 +511,7 @@ body {
   padding-left: 50px;
   display: inline-block;
 }
-.num_list {
+/*.num_list {
   text-align: center;
   margin-top:20px;
 }
@@ -528,8 +531,7 @@ body {
 .num_list a.link {
   background-color: #fff;
   border:1px solid #eee;
-  /*font-weight: 400;*/
-  /*font-size: 160%;*/
+
   color: #333;
   line-height: 30px;
   position: relative
@@ -548,4 +550,9 @@ body {
 .num_list a.first:hover:before, .num_list a.last:hover:before {
   width: 70px;
   height: 70px
-}
+}*/
+.num_list{padding: 15px 20px;text-align: center;color: #ccc;}
+.num_list a{display: inline-block;color: #428bca;display: inline-block;height: 25px; line-height: 25px;  padding: 0 10px;border: 1px solid #ddd; margin: 0 2px;border-radius: 4px;vertical-align: middle;}
+.num_list a:hover{text-decoration: none;border: 1px solid #428bca;}
+.num_list span.current{display: inline-block;height: 25px;line-height: 25px;padding: 0 10px;margin: 0 2px;color: #fff;background-color: #428bca; border: 1px solid #428bca;border-radius: 4px;vertical-align: middle;}
+.num_list span.disabled{ display: inline-block;height: 25px;line-height: 25px;padding: 0 10px;margin: 0 2px; color: #bfbfbf;background: #f2f2f2;border: 1px solid #bfbfbf;border-radius: 4px;vertical-align: middle;}

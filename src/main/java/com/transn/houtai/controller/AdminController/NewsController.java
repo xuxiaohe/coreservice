@@ -75,7 +75,7 @@ public class NewsController {
     public String addnews(Model model,HttpServletRequest request) {
         List<Categorys> allCategory = categoryService.getAllCategory();
         model.addAttribute("categorys", allCategory);
-        return "/admin/addnews";
+        return "/admin/addnews2";
     }
 
 
