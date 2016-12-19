@@ -45,5 +45,12 @@ public class NewsService {
         return one;
     }
 
+    public boolean updateByTop(){
+        newsRepository.updateByTop();
+
+
+        return true;
+    }
+
 
 }

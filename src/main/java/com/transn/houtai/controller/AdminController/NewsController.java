@@ -68,15 +68,47 @@ public class NewsController {
 
 
 
-    /*
-             * 添加新闻页面
-             */
+      /*
+               * 添加新闻页面
+               */
     @RequestMapping("addnew")
     public String addnews(Model model,HttpServletRequest request) {
         List<Categorys> allCategory = categoryService.getAllCategory();
         model.addAttribute("categorys", allCategory);
+        News n=new News();
+        n.setContent("");
+        n.setCategory("");
+        n.setImage("");
+        n.setTitle("");
+        n.setTop(0);
+
+        model.addAttribute("news", n);
+
         return "/admin/addnews2";
     }
+
+
+
+    /*
+           * 添加新闻页面
+           */
+    @RequestMapping("updatenews")
+    public String updatenew(Model model,HttpServletRequest request) {
+        String id = request.getParameter("id");
+        News oneNews = newsService.getOneNews(Integer.parseInt(id));
+        String text=oneNews.getContent();
+        text=text.substring(3,text.length()-4);
+//        text=text.replaceAll("<p>","");
+//        text=text.replaceAll("</p>","");
+        oneNews.setContent(text);
+
+        List<Categorys> allCategory = categoryService.getAllCategory();
+        model.addAttribute("categorys", allCategory);
+        model.addAttribute("news", oneNews);
+        return "/admin/addnews2";
+    }
+
+
 
 
     /*
@@ -90,13 +122,21 @@ public class NewsController {
         String content = request.getParameter("content");
         String isshow = request.getParameter("isshow");
 
+        if (!StringUtil.isBlank(top)&&"1".equals(top)) {
+            newsService.updateByTop();
+        }
+
         Categorys category = categoryService.getCategory(Integer.parseInt(categoryid));
         News n=new News();
         if(category!=null){
             n.setCategory(category.getName());
             n.setCategoryid(Integer.parseInt(categoryid));
         }
-        String filePath1 = FileUpload.uploadFile(image, request);
+        String filePath1="";
+        if (!image.isEmpty()) {
+             filePath1 = FileUpload.uploadFile(image, request);
+        }
+
         n.setImage(filePath1);
         n.setTitle(title);
         n.setContent(content);

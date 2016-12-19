@@ -95,6 +95,7 @@ public class BannerMangerController {
 
 
 
+
         BannerManger b = new BannerManger();
         if (!StringUtil.isBlank(id)) {
             b.setId(Integer.parseInt(id));

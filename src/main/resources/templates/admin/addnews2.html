@@ -46,16 +46,16 @@
 		</div>
 		<div class="main_body">
 			<form id="sform" th:action="@{/admin/news/addnewinfo}" method="post" enctype="multipart/form-data">
+				<input type="hidden" th:value="${news.image}" name="oldimage"/>
 				<table class="inputform" cellpadding="1" cellspacing="1">
 					<tr>
 						<td class="label">文章标题</td>
-						<td class="input"><input type="text" class="txt" name="title" style="width:400px;" /></td>
+						<td class="input"><input type="text" th:value="${news.title}" class="txt" name="title" style="width:400px;" /></td>
 					</tr>
 					<tr>
 						<td class="label">所属分类</td>
 						<td class="input"><select name="ischoose" >
-							<option th:each="category : ${categorys}"
-									th:value="${category.id}" th:text="${category.name}">Credit card</option>
+							<option th:each="category : ${categorys}" th:value="${category.id}" th:text="${category.name}"  th:selected="${#strings.contains(category.name,news.category)}">Credit card</option>
 						</select></td>
 					</tr>
 					<tr>
@@ -74,17 +74,20 @@
 					<tr>
 						<td class="label">频道置顶</td>
 						<td class="input"><label>
-								<input type="radio" name="top" value="1" />
+								<input type="radio" name="top" value="1" th:checked="${#strings.contains('1',news.top.toString())}"/>
 								置顶 </label>
 							<label>
-								<input type="radio" name="top" value="0" checked="checked"/>
+								<input type="radio" name="top" value="0" th:checked="${#strings.contains('0',news.top.toString())}"/>
 								不置顶 </label></td>
 					</tr>
 					<tr>
 						<td class="label">文章内容</td>
 						<td class="input" style="width:80%">
 							<!-- 加载编辑器的容器 -->
-						    <script id="container" name="content" type="text/plain"></script>
+						    <script th:inline="javascript" id="container" name="content" th:text="${news.content}" type="text/plain">
+
+
+							</script>
 						    <!-- 配置文件 -->
 						    <script type="text/javascript" th:src="@{/ueditor/ueditor.config.js}"></script>
 						    <!-- 编辑器源码文件 -->
@@ -94,7 +97,10 @@
 						        var ue = UE.getEditor('container',{
 						        	initialFrameHeight : 300
 						        });
+
+
 						    </script>
+
 						</td>
 					</tr>
 				</table>

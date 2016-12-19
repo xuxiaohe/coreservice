@@ -62,9 +62,9 @@
 				<tr th:each="product : ${data.content}">
 					<td><input id="slt105" type="checkbox" name="chk[]" value="105"/></td>
 					<td th:text="${product.title}"><a href="#" target="_blank">这是文章标题</a></td>
-					<td th:text="${product.content}"><a href="#">集团动态</a></td>
+					<td th:text="${product.category}"><a href="#">集团动态</a></td>
 					<td  th:text="${#dates.format(product.time,'yyyy-MM-dd')}"><span title="该文章已发布" >2012-01-01</span></td>
-					<td><a href="#"> 修改</a></td>
+					<td><a th:href="@{/admin/news/updatenews(id=${product.id})}"> 修改</a></td>
 				</tr>
 			</table>
 			<div class="num_list">

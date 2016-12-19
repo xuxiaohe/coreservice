@@ -28,4 +28,10 @@ public interface NewsRepository extends CrudRepository<News, Long> {
    @Query("update  News u set u.categoryid=0  where u.categoryid = :categoryid")
    public void updateByCategoryid(@Param("categoryid") int categoryid);
 
+
+   @Transactional
+   @Modifying
+   @Query("update  News u set u.top=0")
+   public void updateByTop();
+
 }
