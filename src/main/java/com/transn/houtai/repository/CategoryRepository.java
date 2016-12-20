@@ -1,12 +1,13 @@
 package com.transn.houtai.repository;
 
 import com.transn.houtai.domain.Categorys;
-import com.transn.houtai.domain.News;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by xuxiaohe on 2016/12/15.
@@ -16,4 +17,10 @@ import org.springframework.stereotype.Repository;
 public interface CategoryRepository extends CrudRepository<Categorys, Long> {
 
     public Categorys findById(int id);
+
+    @Transactional
+    @Modifying
+    @Query("update  Categorys u set u.name=:name  where u.id = :id")
+    public void updateCategoryById(@Param("name") String name,@Param("id") int id);
+
 }

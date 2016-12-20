@@ -16,7 +16,7 @@
 				<img src="img/admin-logo.gif" alt="LINECMS 橄榄传媒网站内容管理系统">
 			</a> --> 
 			<i> ，欢迎使用网站管理系统 </i> </div>
-		<div class="fn_right admin_btn"> <a class="a1" href="cleancache.php.html">清除缓存</a><a class="a2" href="logout.php.html">注销</a> </div>
+		<div class="fn_right admin_btn"> <a class="a2" th:href="@{/userlogout}">注销</a> </div>
 	</div>
 	<div class="admin_nav"> 当前位置：<a href="index.php.html">后台</a> > 文章列表 </div>
 	<div class="main admin_content fn_clear">
@@ -35,11 +35,13 @@
 						<dt > <a href="javascript:;">新闻管理</a> <i class="ico"></i> </dt>
 						<dd class='on' > <a th:href="@{/admin/news/addnew}">添加文章</a> </dd>
 						<dd> <a th:href="@{/admin/news/newslist}">内容管理</a> </dd>
+						<dd> <a th:href="@{/admin/news/getcategorylist}">文章分类</a> </dd>
+						<dd> <a th:href="@{/admin/news/addcategory}">添加分类</a> </dd>
 					</dl>
 				</div>
 				<dl id="iteam-comments" >
 					<dt > <a href="javascript:;">招商留言</a> <i class="ico"></i> </dt>
-					<dd> <a href="7招商留言.html">留言列表</a> </dd>
+					<dd> <a th:href="@{/admin/liuyan/liuyanlist}">留言列表</a> </dd>
 				</dl>
 			</div>
 		</div>
@@ -53,14 +55,12 @@
 
 			<table class="inputform" cellpadding="1" cellspacing="1">
 				<tr class="th">
-					<td class="w10">选择</td>
 					<td class="w50">文章标题</td>
 					<td class="20">所属分类</td>
 					<td class="w10">发布时间</td>
 					<td class="w10">相关操作</td>
 				</tr>
 				<tr th:each="product : ${data.content}">
-					<td><input id="slt105" type="checkbox" name="chk[]" value="105"/></td>
 					<td th:text="${product.title}"><a href="#" target="_blank">这是文章标题</a></td>
 					<td th:text="${product.category}"><a href="#">集团动态</a></td>
 					<td  th:text="${#dates.format(product.time,'yyyy-MM-dd')}"><span title="该文章已发布" >2012-01-01</span></td>
@@ -68,16 +68,20 @@
 				</tr>
 			</table>
 			<div class="num_list">
-				<a href="javascript:;" class="link first">&lt; 最前</a>
-				<a href="javascript:;" class="link on">1</a>
-				<a href="javascript:;" class="link">2</a>
-				<a href="javascript:;" class="link">3</a>
-				<a href="javascript:;">…</a>
-				<a href="javascript:;" class="link">11</a>
-				<a href="javascript:;" class="link">12</a>
-				<a href="javascript:;" class="link">13</a>
-				<a href="javascript:;" class="link last">最后 &gt;</a>
 			</div>
+			<script th:src="@{/js/jquery.page.js}"></script>
+			<script th:inline="javascript">
+                $(".num_list").createPage({
+                    pageCount:[[${data.totalPages}]],
+                    current:[[${data.number+1}]],
+                    backFn:function(p){
+//                        alert("页数："+p)
+                        window.location.href="newslist?n="+p;
+                    }
+                    //     pageCount：总页数
+                    // current：当前页
+                });
+			</script>
 			<div class="p10">
 				<div class="fr"> 共8条文章 当前1/1页 </div>
 				<div><strong>提示："定时发布"的文章，只有管理员可以看到，未到发布时间不能在前台显示，正式发布后，会自动显示。<br />

@@ -48,5 +48,11 @@ public class CategoryService {
         return save;
     }
 
+    public boolean updateCategoryByid(String name,int id){
+        categoryRepository.updateCategoryById(name,id);
+        return true;
+    }
+
+
 
 }
