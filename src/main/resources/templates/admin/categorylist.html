@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>URL设置</title>
+<title>分类列表</title>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 	<link th:href="@{/images/style.css}" rel="stylesheet" type="text/css" />
 	<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" />
@@ -58,7 +58,7 @@
 						<tr th:each="category : ${categorys}">
 							<td th:text="${category.id}"></td>
 							<td><a href="../category.php?name=writer" target="_blank" th:text="${category.name}"></a></td>
-							<td><a th:href="@{/admin/news/updateCategory(id=${category.id})}">编辑</a> <a th:href="@{/admin/news/deleteCategory(id=${category.id})}">删除</a> </td>
+							<td><a th:style="${category.id eq 1}?'display:none'" th:href="@{/admin/news/updateCategory(id=${category.id})}">编辑 |</a>  <a th:style="${category.id eq 1}?'display:none'" th:href="@{/admin/news/deleteCategory(id=${category.id})}"><font color="red">删除</font></a> </td>
 						</tr>
 					</tbody>
 				</table>

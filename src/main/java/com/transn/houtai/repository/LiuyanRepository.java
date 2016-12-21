@@ -27,6 +27,12 @@ public interface LiuyanRepository extends CrudRepository<Liuyan, Long> {
    @Modifying
    @Query("update  Liuyan u set u.back=:back  where u.id = :id")
    public void updatebackByid(@Param("back") String back,@Param("id") int id);
+
+
+   @Transactional
+   @Modifying
+   @Query("update  Liuyan u set u.ischeck=:ischeck  where u.id = :id")
+   public void updateischeckByid(@Param("ischeck") String ischeck,@Param("id") int id);
 //
 //
 //   @Transactional

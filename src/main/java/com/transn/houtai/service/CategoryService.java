@@ -7,8 +7,10 @@ import com.transn.houtai.repository.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,7 +41,8 @@ public class CategoryService {
 
 
     public List<Categorys> getAllCategory(){
-        List one = (List) categoryRepository.findAll();
+        Sort s=new Sort(Sort.Direction.ASC, "id");
+        List one = (List) categoryRepository.findAll(s);
         return one;
     }
 

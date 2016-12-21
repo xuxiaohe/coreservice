@@ -89,4 +89,47 @@ public class LiuyanController {
     }
 
 
+    /*
+           *留言标记为处理
+           */
+    @RequestMapping("updatecheck")
+    public String updatecheck(Model model, HttpServletRequest request,int id) {
+
+        liuyanService.updatecheck(id,"1");
+        QueryModelMul dm =new QueryModelMul();
+        List<String> sort = new ArrayList<String>();
+        sort.add("time");
+        dm.setSort(sort);
+
+        Pageable pageable = PageRequestTools.pageRequesMake(dm);
+
+        Page<Liuyan> bannerMangers = liuyanService.getallLiuyanByPage(pageable);
+
+        model.addAttribute("data", bannerMangers);
+        return "/admin/liuyan";
+    }
+
+
+
+    /*
+          *留言删除
+          */
+    @RequestMapping("deleteliuyan")
+    public String deleteliuyan(Model model, HttpServletRequest request,int id) {
+
+        liuyanService.deleteliuyan(id);
+        QueryModelMul dm =new QueryModelMul();
+        List<String> sort = new ArrayList<String>();
+        sort.add("time");
+        dm.setSort(sort);
+
+        Pageable pageable = PageRequestTools.pageRequesMake(dm);
+
+        Page<Liuyan> bannerMangers = liuyanService.getallLiuyanByPage(pageable);
+
+        model.addAttribute("data", bannerMangers);
+        return "/admin/liuyan";
+    }
+
+
 }

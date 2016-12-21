@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
@@ -73,7 +74,13 @@ public class AdminloginController {
             return "/admin/login";
         }
 
-
+    @ResponseBody
+    @RequestMapping("/addadmin")
+    public Object addadmin(AdminUser a) {
+        a.setTime(System.currentTimeMillis()+"");
+        adminUserService.saveAdminUser(a);
+        return a;
+    }
 
 
 

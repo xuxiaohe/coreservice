@@ -1,9 +1,7 @@
 package com.transn.houtai.service;
 
 import com.transn.houtai.domain.Liuyan;
-import com.transn.houtai.domain.News;
 import com.transn.houtai.repository.LiuyanRepository;
-import com.transn.houtai.repository.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -44,6 +42,17 @@ public class LiuyanService {
     }
 
 
+    public boolean updatecheck(int id, String ischeck){
+        liuyanRepository.updateischeckByid(ischeck,id);
+        return true;
+    }
+
+    public boolean deleteliuyan(int id){
+        Liuyan l=new Liuyan();
+        l.setId(id);
+        liuyanRepository.delete(l);
+        return true;
+    }
 
 
 }

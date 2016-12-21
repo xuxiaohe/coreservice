@@ -16,7 +16,7 @@
 			<a href="http://ganline.com/" target="_blank" class="logo">
 				<img src="img/admin-logo.gif" alt="LINECMS 橄榄传媒网站内容管理系统">
 			</a> --> 
-			<i> ，欢迎使用网站管理系统 </i> </div>
+			<i> 欢迎使用网站管理系统 </i> </div>
 		<div class="fn_right admin_btn"> <a class="a2" th:href="@{/userlogout}">注销</a> </div>
 	</div>
 	<div class="admin_nav"> 当前位置：<a href="index.php.html">后台</a> > 添加文章 </div>
@@ -86,7 +86,7 @@
 						<td class="label">文章内容</td>
 						<td class="input" style="width:80%">
 							<!-- 加载编辑器的容器 -->
-						    <script th:inline="javascript" id="container" name="content" th:text="${news.content}" type="text/plain">
+						    <script th:inline="javascript" id="container" name="content" th:utext="${news.content}" type="text/plain">
 
 
 							</script>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<title>橄榄传媒 | LINECMS 网站内容管理系统 - 用户登录</title>
+<title>网站内容管理系统 - 用户登录</title>
 <script type="text/javascript" th:src="@{/js/jquery-1.8.0.min.js}" ></script>
 <script type="text/javascript" th:src="@{/js/yanzheng.js}" ></script>
 <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" />
@@ -69,7 +69,7 @@
 					<div class="input login_btn">
 						<input class="btn" type="submit" onclick="return validateCode();" value="提交" />
 					</div>
-						<label th:text="${error}"></label>
+						<label th:text="${error}" style="color: red;font-size: 12px;"></label>
 				</div>
 			</div>
 		</div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>幻灯片管理</title>
+<title>广告位</title>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 <link th:href="@{/images/style.css}" rel="stylesheet" type="text/css" />
 <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" />
@@ -17,7 +17,7 @@
 			<a href="http://ganline.com/" target="_blank" class="logo">
 				<img src="img/admin-logo.gif" alt="LINECMS 橄榄传媒网站内容管理系统">
 			</a> --> 
-			<i> ，欢迎使用网站管理系统 </i> </div>
+			<i> 欢迎使用网站管理系统 </i> </div>
 		<div class="fn_right admin_btn">  <a class="a2" th:href="@{/userlogout}">注销</a> </div>
 	</div>
 	<div class="admin_nav"> 当前位置：<a href="index.php.html">后台</a> > 幻灯片管理 </div>
@@ -63,7 +63,7 @@
 						<td th:text="${product.title}">-</td>
 						<td><img th:src="@{'/'+${product.image}}" style='width:200px; height:auto;'/> </td>
 						<!--<td>生效</td>-->
-						<td><a th:href="@{/admin/manger/getOnehengfu(id=${product.id})}">编辑</a> | <a th:href="@{/admin/manger/deletehengfu(id=${product.id})}" onclick="confirm('确定要删除吗？');">删除</a></td>
+						<td><a th:href="@{/admin/manger/getOnehengfu(id=${product.id})}">编辑</a> | <a th:href="@{/admin/manger/deletehengfu(id=${product.id})}" onclick="confirm('确定要删除吗？');"><font color="red">删除</font></a></td>
 					</tr>
 				</table>
 				<div class="inputsubmit" style="padding-left:90px;">

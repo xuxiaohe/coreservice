@@ -58,17 +58,17 @@ public class NewsController extends BaseController{
         Pageable pageable = PageRequestTools.pageRequesMake(dm);
 
         Page<News> bannerMangers = newsService.getallNewsByPage(pageable);
-        List<Categorys> allCategory = categoryService.getAllCategory();
-        String ca = "";
-        if (allCategory.size() != 0) {
-            for (Categorys s : allCategory) {
-                ca += s.getName() + "  、";
-            }
-        }
+//        List<Categorys> allCategory = categoryService.getAllCategory();
+//        String ca = "";
+//        if (allCategory.size() != 0) {
+//            for (Categorys s : allCategory) {
+//                ca += s.getName() + "  、";
+//            }
+//        }
 
         model.addAttribute("data", bannerMangers);
-        model.addAttribute("categorys", ca);
-        model.addAttribute("categorylist", allCategory);
+//        model.addAttribute("categorys", ca);
+//        model.addAttribute("categorylist", allCategory);
         return "/admin/newslist";
     }
 
@@ -123,11 +123,11 @@ public class NewsController extends BaseController{
     public String updatenew(Model model, HttpServletRequest request) {
         String id = request.getParameter("id");
         News oneNews = newsService.getOneNews(Integer.parseInt(id));
-        String text = oneNews.getContent();
-        text = text.substring(3, text.length() - 4);
+//        String text = oneNews.getContent();
+//        text = text.substring(3, text.length() - 4);
 //        text=text.replaceAll("<p>","");
 //        text=text.replaceAll("</p>","");
-        oneNews.setContent(text);
+//        oneNews.setContent(text);
 
         List<Categorys> allCategory = categoryService.getAllCategory();
         model.addAttribute("categorys", allCategory);
@@ -262,5 +262,28 @@ public class NewsController extends BaseController{
         return "/admin/addcategory";
     }
 
+
+
+    /*
+            * 删除新闻
+            */
+    @RequestMapping("deleteNews")
+    public String deleteNews(Model model, HttpServletRequest request) {
+
+        QueryModelMul dm =new QueryModelMul();
+        String id = request.getParameter("id");
+       News n=new News();
+       n.setId(Integer.parseInt(id));
+        newsService.deleteNews(n);
+        List<String> sort = new ArrayList<String>();
+        sort.add("time");
+        dm.setSort(sort);
+
+        Pageable pageable = PageRequestTools.pageRequesMake(dm);
+
+        Page<News> bannerMangers = newsService.getallNewsByPage(pageable);
+        model.addAttribute("data", bannerMangers);
+        return "/admin/newslist";
+    }
 
 }
