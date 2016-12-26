@@ -147,6 +147,7 @@ public class NewsController extends BaseController{
         String top = request.getParameter("top");
         String content = request.getParameter("content");
         String isshow = request.getParameter("isshow");
+        String oldimage = request.getParameter("oldimage");
 
         if (!StringUtil.isBlank(top) && "1".equals(top)) {
             newsService.updateByTop();
@@ -163,7 +164,12 @@ public class NewsController extends BaseController{
             filePath1 = FileUpload.uploadFile(image, request);
         }
 
-        n.setImage(filePath1);
+        if (StringUtil.isBlank(filePath1)) {
+            n.setImage(oldimage);
+        }else {
+            n.setImage(filePath1);
+        }
+
         n.setTitle(title);
         n.setContent(content);
         n.setTop(Integer.parseInt(top));
