@@ -58,7 +58,7 @@
 		<ul >
 			<li th:each="news:${news.content}">
 				<a href="#" class="img">
-					<img src="pic/110.jpg" th:src="${news.image}"/>
+					<img src="pic/110.jpg" th:src="@{${news.image}}"/>
 				</a>
 				<div class="part">
 					<h5><a href="#" th:text="${news.title}">响应“全民健身”国家战略，构造体育产业生态链</a></h5>

@@ -141,6 +141,7 @@ public class NewsController extends BaseController{
              */
     @RequestMapping("addnewinfo")
     public String addnewinfo(Model model, HttpServletRequest request, @RequestParam MultipartFile image) throws IOException {
+        String id = request.getParameter("id");
         String title = request.getParameter("title");
         String categoryid = request.getParameter("ischoose");
         String top = request.getParameter("top");
@@ -167,6 +168,10 @@ public class NewsController extends BaseController{
         n.setContent(content);
         n.setTop(Integer.parseInt(top));
         n.setTime(System.currentTimeMillis());
+
+        if(!StringUtil.isBlank(id)){
+           n.setId(Integer.parseInt(id));
+        }
 
         News news = newsService.saveBanner(n);
 

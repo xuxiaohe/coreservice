@@ -49,6 +49,7 @@
 		<div class="main_body">
 			<form id="sform" th:action="@{/admin/news/addnewinfo}" method="post" enctype="multipart/form-data">
 				<input type="hidden" th:value="${news.image}" name="oldimage"/>
+				<input type="hidden" th:value="${news.id}" name="id"/>
 				<table class="inputform" cellpadding="1" cellspacing="1">
 					<tr>
 						<td class="label">文章标题</td>
