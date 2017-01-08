@@ -8,6 +8,7 @@ import com.transn.houtai.service.AdminUserService;
 import com.transn.houtai.service.BannerMangerService;
 import com.transn.houtai.service.CategoryService;
 import com.transn.houtai.service.NewsService;
+import com.transn.houtai.util.Config;
 import com.transn.houtai.util.FileUpload;
 import com.transn.houtai.util.PageRequestTools;
 import com.transn.houtai.util.StringUtil;
@@ -67,6 +68,9 @@ public class NewsController extends BaseController{
 //        }
 
         model.addAttribute("data", bannerMangers);
+        model.addAttribute("addnewsaddress", Config.ADDNEWS);
+        model.addAttribute("updatenewsaddress", Config.UPDATENEWS);
+        model.addAttribute("local", 4);
 //        model.addAttribute("categorys", ca);
 //        model.addAttribute("categorylist", allCategory);
         return "/admin/newslist";
@@ -111,43 +115,105 @@ public class NewsController extends BaseController{
         n.setTop(0);
 
         model.addAttribute("news", n);
-
+        model.addAttribute("addnewsaddress", Config.ADDNEWS);
         return "/admin/addnews2";
     }
 
 
-    /*
-           * 添加新闻页面
-           */
-    @RequestMapping("updatenews")
-    public String updatenew(Model model, HttpServletRequest request) {
-        String id = request.getParameter("id");
-        News oneNews = newsService.getOneNews(Integer.parseInt(id));
-//        String text = oneNews.getContent();
-//        text = text.substring(3, text.length() - 4);
-//        text=text.replaceAll("<p>","");
-//        text=text.replaceAll("</p>","");
-//        oneNews.setContent(text);
-
-        List<Categorys> allCategory = categoryService.getAllCategory();
-        model.addAttribute("categorys", allCategory);
-        model.addAttribute("news", oneNews);
-        return "/admin/addnews2";
-    }
+//    /*
+//           * 添加新闻页面
+//           */
+//    @RequestMapping("updatenews")
+//    public String updatenew(Model model, HttpServletRequest request) {
+//        String id = request.getParameter("id");
+//        News oneNews = newsService.getOneNews(Integer.parseInt(id));
+////        String text = oneNews.getContent();
+////        text = text.substring(3, text.length() - 4);
+////        text=text.replaceAll("<p>","");
+////        text=text.replaceAll("</p>","");
+////        oneNews.setContent(text);
+//
+//        List<Categorys> allCategory = categoryService.getAllCategory();
+//        model.addAttribute("categorys", allCategory);
+//        model.addAttribute("news", oneNews);
+//        return "/admin/addnews2";
+//    }
 
 
     /*
              * 添加新闻
              */
-    @RequestMapping("addnewinfo")
-    public String addnewinfo(Model model, HttpServletRequest request, @RequestParam MultipartFile image) throws IOException {
-        String id = request.getParameter("id");
+//    @ResponseBody
+//    @RequestMapping("addnewinfo")
+//    public String addnewinfo(Model model, HttpServletRequest request) throws IOException {
+//        String id = request.getParameter("id");
+//        String title = request.getParameter("title");
+//        String categoryid = request.getParameter("ischoose");
+//        String top = request.getParameter("top");
+//        String content = request.getParameter("content");
+//        String isshow = request.getParameter("isshow");
+//        String oldimage = request.getParameter("oldimage");
+//
+//        if (!StringUtil.isBlank(top) && "1".equals(top)) {
+//            newsService.updateByTop();
+//        }
+//
+//        Categorys category = categoryService.getCategory(Integer.parseInt(categoryid));
+//        News n = new News();
+//        if (category != null) {
+//            n.setCategory(category.getName());
+//            n.setCategoryid(Integer.parseInt(categoryid));
+//        }
+//        String filePath1 = "";
+////        if (!image.isEmpty()) {
+////            filePath1 = FileUpload.uploadFile(image, request);
+////        }
+//
+//        if (StringUtil.isBlank(filePath1)) {
+//            n.setImage(oldimage);
+//        }else {
+//            n.setImage(filePath1);
+//        }
+//
+//        n.setTitle(title);
+//        n.setContent(content);
+//        n.setTop(Integer.parseInt(top));
+//        n.setTime(System.currentTimeMillis());
+//
+//        if(!StringUtil.isBlank(id)){
+//           n.setId(Integer.parseInt(id));
+//        }
+//
+//        News news = newsService.saveBanner(n);
+//
+//        QueryModelMul dm = new QueryModelMul();
+//        List<String> sort = new ArrayList<String>();
+//        sort.add("time");
+//        dm.setSort(sort);
+//        Pageable pageable = PageRequestTools.pageRequesMake(dm);
+//        Page<News> bannerMangers = newsService.getallNewsByPage(pageable);
+//        List<Categorys> allCategory = categoryService.getAllCategory();
+//        model.addAttribute("data", bannerMangers);
+//        model.addAttribute("categorys", allCategory);
+//
+//        return "/admin/newslist";
+//    }
+
+
+
+
+
+    /*
+             * 添加新闻
+             */
+    @ResponseBody
+    @RequestMapping("removeaddnewinfo")
+    public String removeaddnewinfo(Model model, HttpServletRequest request) throws IOException {
         String title = request.getParameter("title");
         String categoryid = request.getParameter("ischoose");
         String top = request.getParameter("top");
         String content = request.getParameter("content");
         String isshow = request.getParameter("isshow");
-        String oldimage = request.getParameter("oldimage");
 
         if (!StringUtil.isBlank(top) && "1".equals(top)) {
             newsService.updateByTop();
@@ -160,24 +226,13 @@ public class NewsController extends BaseController{
             n.setCategoryid(Integer.parseInt(categoryid));
         }
         String filePath1 = "";
-        if (!image.isEmpty()) {
-            filePath1 = FileUpload.uploadFile(image, request);
-        }
 
-        if (StringUtil.isBlank(filePath1)) {
-            n.setImage(oldimage);
-        }else {
-            n.setImage(filePath1);
-        }
 
         n.setTitle(title);
         n.setContent(content);
         n.setTop(Integer.parseInt(top));
         n.setTime(System.currentTimeMillis());
 
-        if(!StringUtil.isBlank(id)){
-           n.setId(Integer.parseInt(id));
-        }
 
         News news = newsService.saveBanner(n);
 
@@ -190,9 +245,10 @@ public class NewsController extends BaseController{
         List<Categorys> allCategory = categoryService.getAllCategory();
         model.addAttribute("data", bannerMangers);
         model.addAttribute("categorys", allCategory);
-
+        model.addAttribute("addnewsaddress", Config.ADDNEWS);
         return "/admin/newslist";
     }
+
 
 
     /*
@@ -217,6 +273,7 @@ public class NewsController extends BaseController{
 
         List<Categorys> allCategory = categoryService.getAllCategory();
         model.addAttribute("categorys", allCategory);
+        model.addAttribute("addnewsaddress", Config.ADDNEWS);
         return "/admin/categorylist";
     }
 
@@ -234,6 +291,7 @@ public class NewsController extends BaseController{
 
         List<Categorys> allCategory = categoryService.getAllCategory();
         model.addAttribute("categorys", allCategory);
+        model.addAttribute("addnewsaddress", Config.ADDNEWS);
         return "/admin/categorylist";
     }
 
@@ -246,6 +304,7 @@ public class NewsController extends BaseController{
         String id = request.getParameter("id");
         Categorys category = categoryService.getCategory(Integer.parseInt(id));
         model.addAttribute("category", category);
+        model.addAttribute("addnewsaddress", Config.ADDNEWS);
         return "/admin/addcategory";
     }
 
@@ -257,6 +316,8 @@ public class NewsController extends BaseController{
     public String getcategorylist(Model model, HttpServletRequest request) {
         List<Categorys> allCategory = categoryService.getAllCategory();
         model.addAttribute("categorys", allCategory);
+        model.addAttribute("addnewsaddress", Config.ADDNEWS);
+        model.addAttribute("local", 5);
         return "/admin/categorylist";
     }
 
@@ -270,6 +331,8 @@ public class NewsController extends BaseController{
         c.setName("");
         c.setId(0);
         model.addAttribute("category", c);
+        model.addAttribute("addnewsaddress", Config.ADDNEWS);
+        model.addAttribute("local", 6);
         return "/admin/addcategory";
     }
 
@@ -294,6 +357,7 @@ public class NewsController extends BaseController{
 
         Page<News> bannerMangers = newsService.getallNewsByPage(pageable);
         model.addAttribute("data", bannerMangers);
+        model.addAttribute("addnewsaddress", Config.ADDNEWS);
         return "/admin/newslist";
     }
 

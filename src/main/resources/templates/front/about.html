@@ -1,0 +1,151 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1, maximum-scale=1"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta name="renderer" content="webkit"/>
+<meta name="force-rendering" content="webkit"/>
+<link rel="icon" th:href="@{/front/img/favicon.ico}" type="image/x-icon"/>
+<link rel="shortcut icon" th:href="@{/front/img/favicon.ico}" type="image/x-icon"/>
+<link rel="stylesheet" th:href="@{/front/css/style.css}"/>
+</head>
+<body>
+<header>
+	<div class="fn_clear">
+		<div class="logo">
+			<a href="/"><img th:src="@{/front/img/logo.gif}" alt="北京体育文化产业集团有限公司"/></a>
+		</div>
+		<nav>
+			<ul>
+				<li class="link">
+					<a th:href="@{/}" href="javascript:;">首页</a>
+				</li>
+				<li class="link">
+					<a href="javascript:;">集团介绍</a>
+					<div class="mini_menu">
+						<a th:href="@{/about}" href="javascript:;">公司简介</a>
+					</div>
+				</li>
+				<li class="link">
+					<a href="javascript:;">新闻中心</a>
+					<div class="mini_menu">
+						<a href="javascript:;" th:href="@{/news/newslist}">集团新闻</a>
+					</div>
+				</li>
+				<li class="link">
+					<a href="javascript:;">核心产品</a>
+					<div class="mini_menu">
+						<a href="javascript:;" >体育公园</a>
+						<a href="javascript:;" >关于气膜</a>
+					</div>
+				</li>
+				<li class="link">
+					<a href="javascript:;">场馆地图</a>
+				</li>
+			</ul>
+			
+			<div class="search">
+				<input type="text" class="search_input" placeholder="您想找什么"/>
+				<a href="javascript:;" class="btn"></a>
+			</div>
+		</nav>
+	</div>
+</header>
+<section class="about_page fn_clear">
+	<div class="content">
+		<div class="post">
+			<img th:src="@{/front/img/about_h3.gif}" alt=""/>
+			<div class="img"><img th:src="@{/front/img/about_p.jpg}" alt=""/></div>
+<p>北京体育文化产业集团有限公司（“本集团”）为香港主板上市公司，股票代码01803.HK，隶属于北京控股集团有限公司。本集团专注于体育及文化产业的投资与发展，推动全民健身及文化事业，拥有行业技术优势、投融资优势、政府资源以及国际化的产业资源。</p>
+<p>本集团专注于五大业务板块：</p>
+<p>一、创新型体育公园，气膜场馆的开发、投资与运营；<br />
+	二、创新型文体旅游设施既集装箱板块化建筑的开发投资与运营；<br />
+	三、影院剧场及其衍生娱乐场所得开发投资与运营；<br />
+	四、体育媒体的开发投资与运营；<br />
+	五、各体育类实体项目管理运营及体育培训学校的投资与运营。</p>
+<p>一、 创新型体育公园，气膜场馆的开发、投资与运营；</p>
+<p>主要针对目前全国城市范围内雾霾污染及人均场馆面积不足的现状，在城市内及近郊区投资建设空气质量可控、节能环保、恒温恒湿的气膜体育场馆，配以健身步道等多种室外体育设施，通过专业化高标准的运营团队，导入高标准的统一管理以及观赏类赛事、体育培训和运动康复等相关项目。打造结合室内运动场馆、室外运动设施的多功能全天候创新型体育公园。</p>
+<p>二、 创新型文体旅游设施集装箱模块化建筑的开发投资与运营；</p>
+<p>利用集装箱建筑移动灵活、组合快速、色彩艳丽、可创意搭建等适合体育、文化设施的特点，结合我国现有土地政策条件，以模块化集装箱建筑为载体，建造移动式、半永久乃至永久性的体育文化设施，服务于体育主题商业综合体、单体运动方舱、户外营地及文体旅游项目开发等产业内容，并可与本集团的气膜等新型建筑形成最佳搭配，产生协同效应。</p>
+<p>三、 影院剧场及其衍生娱乐场所得开发投资与运营；</p>
+<p>以影院投资建设为产业核心，通过私人影吧、交互式影音体验场所的搭建，以及现场演艺中心、书屋、咖啡屋、餐饮、健身场馆、儿童游乐中心等配套设施的导入，打造一个以影视娱乐为中心的一站式休闲娱乐综合体和周末消费新场景。</p>
+<p>四、 体育媒体的开发投资与运营；</p>
+<p>致力于以互联网等新媒体服务为投资切入点，进一步打通赛事运营、运用智能硬件及互联网应用服务打造新媒体平台，并联合各大媒体机构导入高品质内容，服务于赛事赛场及大众体育场馆。</p>
+<p>五、 各体育类实体项目管理运营及体育培训学校的投资与运营；</p>
+<p>通过投资与运营各类体育培训学校及体育相关俱乐部，打造集足球、篮球、网球、羽毛球等相关运动健身、培训、休闲娱乐、亲子互动的专业化体育场馆运营管理平台。从集团旗下体育场馆及签约场馆导入优质的职业培训、青少年培训、教练员培训、体育赛事、亲子娱乐等服务出发，提高集团旗下体育场馆的核心竞争力。最终向社会品牌化输出专业的管理运营团队。</p>
+
+		</div>
+	</div>
+</section>
+<footer>
+	<h6><div class="max_width">北京体育文化产业集团(股票代码：HK1803)</div></h6>
+	<section class="menu">
+		<div class="max_width fn_clear">
+			<div class="box">
+				<h3>公司产品 </h3>
+				<ul>
+					<li>
+						<a href="">体育主题公园</a>
+					</li>
+					<li>
+						<a href="">体育中心</a>
+					</li>
+					<li>
+						<a href="">体育馆</a>
+					</li>
+				</ul>
+			</div>
+			<div class="box">
+				<h3>企业动态</h3>
+				<ul>
+					<li>
+						<a href="">公司动态</a>
+					</li>
+					<li>
+						<a href="">集团动态</a>
+					</li>
+				</ul>
+			</div>
+			<div class="box">
+				<h3>联系我们</h3>
+				<ul>
+					<li>
+						<a href="">招商电话</a>
+					</li>
+					<li>
+						<a href="">集团动态</a>
+					</li>
+				</ul>
+			</div>
+			<div class="box">
+				<h3>互动中心</h3>
+				<ul>
+					<li class="share">
+						<a href="#">
+							<img th:src="@{/front/img/share_wx.png}" alt=""/>
+						</a>
+						<a href="#">
+							<img th:src="@{/front/img/share_weibo.png}" alt=""/>
+						</a>
+					</li>
+					<li>
+						<span class="server">400-521-521</span>
+					</li>
+				</ul>
+			</div>
+			<a th:href="@{/join}" class="join"></a>
+		</div>
+	</section>
+	<div class="icp">
+		<div class="max_width">
+			© 2016 北京体育产业集团公司  版权所有：京ICP备05014360号
+		</div>
+	</div>
+</footer>
+<script th:src="@{/front/js/jquery-2.1.4.min.js}" type="text/javascript"></script>
+<script th:src="@{/front/js/script.js}" type="text/javascript"></script>
+</body>
+</html>
+

@@ -5,6 +5,7 @@ import com.transn.houtai.domain.Liuyan;
 import com.transn.houtai.domain.News;
 import com.transn.houtai.service.AdminUserService;
 import com.transn.houtai.service.LiuyanService;
+import com.transn.houtai.util.Config;
 import com.transn.houtai.util.PageRequestTools;
 import com.transn.houtai.util.pages.QueryModelMul;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,8 @@ public class LiuyanController {
         Page<Liuyan> bannerMangers = liuyanService.getallLiuyanByPage(pageable);
 
         model.addAttribute("data", bannerMangers);
+        model.addAttribute("addnewsaddress", Config.ADDNEWS);
+        model.addAttribute("local", 7);
         return "/admin/liuyan";
     }
 
@@ -57,6 +60,7 @@ public class LiuyanController {
         Liuyan bannerMangers = liuyanService.getOneLiuyan(id);
 
         model.addAttribute("data", bannerMangers);
+        model.addAttribute("addnewsaddress", Config.ADDNEWS);
         return "/admin/liuyaninfo";
     }
 
@@ -85,6 +89,7 @@ public class LiuyanController {
         Liuyan bannerMangers = liuyanService.getOneLiuyan(id);
 
         model.addAttribute("data", bannerMangers);
+        model.addAttribute("addnewsaddress", Config.ADDNEWS);
         return "/admin/liuyaninfo";
     }
 
@@ -106,6 +111,7 @@ public class LiuyanController {
         Page<Liuyan> bannerMangers = liuyanService.getallLiuyanByPage(pageable);
 
         model.addAttribute("data", bannerMangers);
+        model.addAttribute("addnewsaddress", Config.ADDNEWS);
         return "/admin/liuyan";
     }
 
@@ -128,6 +134,7 @@ public class LiuyanController {
         Page<Liuyan> bannerMangers = liuyanService.getallLiuyanByPage(pageable);
 
         model.addAttribute("data", bannerMangers);
+        model.addAttribute("addnewsaddress", Config.ADDNEWS);
         return "/admin/liuyan";
     }
 

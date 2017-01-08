@@ -19,6 +19,7 @@ public class News {
     private String image;
     private int top;
     private String content;
+    private String subcontent;
     private int isshow;
     private long time;
 
@@ -94,4 +95,11 @@ public class News {
         this.categoryid = categoryid;
     }
 
+    public String getSubcontent() {
+        return subcontent;
+    }
+
+    public void setSubcontent(String subcontent) {
+        this.subcontent = subcontent;
+    }
 }

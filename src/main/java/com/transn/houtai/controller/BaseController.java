@@ -2,8 +2,10 @@ package com.transn.houtai.controller;
 
 import com.transn.houtai.util.ReponseData;
 import com.transn.houtai.util.ResponseContainer;
+import com.transn.houtai.util.StringUtil;
 import org.apache.log4j.Logger;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -70,6 +72,19 @@ public class BaseController {
 		return res;
 	}
 
+	public String removeHtmlTag(String content){
+		if (!StringUtil.isBlank(content)) {
+			content = content.replaceAll("<p>", "");
+			content = content.replaceAll("</p>", "");
+			content = content.replaceAll("\\<.*?>", "");
+			if (content.length()>60) {
+				content=content.substring(0,60)+"...";
+			}
+
+		}
+
+		return content;
+	}
 
 
 

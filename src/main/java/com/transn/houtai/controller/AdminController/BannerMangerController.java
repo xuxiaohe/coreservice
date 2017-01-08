@@ -3,6 +3,7 @@ package com.transn.houtai.controller.AdminController;
 import com.transn.houtai.domain.BannerManger;
 import com.transn.houtai.service.AdminUserService;
 import com.transn.houtai.service.BannerMangerService;
+import com.transn.houtai.util.Config;
 import com.transn.houtai.util.FileUpload;
 import com.transn.houtai.util.PageRequestTools;
 import com.transn.houtai.util.StringUtil;
@@ -39,13 +40,16 @@ public class BannerMangerController {
          * 横幅列表
          */
     @RequestMapping("gethengfulist")
-    public String hengfulist(Model model, QueryModelMul dm) {
+    public String hengfulist(Model model,QueryModelMul dm) {
         List<String> sort = new ArrayList<String>();
         sort.add("time");
         dm.setSort(sort);
         Pageable pageable = PageRequestTools.pageRequesMake(dm);
         Page<BannerManger> bannerMangers = bannerMangerService.getallBannerByPage(pageable);
         model.addAttribute("data", bannerMangers);
+        model.addAttribute("addnewsaddress", Config.ADDNEWS);
+        model.addAttribute("local", 1);
+
         return "/admin/hengfulist";
     }
 
@@ -78,6 +82,8 @@ public class BannerMangerController {
         b.setOrders(0);
 
         model.addAttribute("data", b);
+        model.addAttribute("addnewsaddress", Config.ADDNEWS);
+        model.addAttribute("local", 2);
         return "/admin/addhengfu";
     }
 
@@ -122,7 +128,7 @@ public class BannerMangerController {
         Pageable pageable = PageRequestTools.pageRequesMake(dm);
         Page<BannerManger> bannerMangers = bannerMangerService.getallBannerByPage(pageable);
         model.addAttribute("data", bannerMangers);
-
+        model.addAttribute("addnewsaddress", Config.ADDNEWS);
 
         return "/admin/hengfulist";
     }
@@ -142,7 +148,7 @@ public class BannerMangerController {
         Pageable pageable = PageRequestTools.pageRequesMake(dm);
         Page<BannerManger> bannerMangers = bannerMangerService.getallBannerByPage(pageable);
         model.addAttribute("data", bannerMangers);
-
+        model.addAttribute("addnewsaddress", Config.ADDNEWS);
         return "/admin/hengfulist";
     }
 
@@ -157,7 +163,7 @@ public class BannerMangerController {
         BannerManger b1 = bannerMangerService.getOneBanner(b.getId());
 
         model.addAttribute("data", b1);
-
+        model.addAttribute("addnewsaddress", Config.ADDNEWS);
         return "/admin/addhengfu";
 //        return b1;
     }

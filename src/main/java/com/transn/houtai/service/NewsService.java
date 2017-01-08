@@ -52,6 +52,11 @@ public class NewsService {
         return true;
     }
 
+    public Page<News> getallNewsByPageAndCategory(Pageable page,String name){
+        Page<News> byCategory = newsRepository.findByCategory(page, name);
+        return byCategory;
+    }
+
 
 
 }

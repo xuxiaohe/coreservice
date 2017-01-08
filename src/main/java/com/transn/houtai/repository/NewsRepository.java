@@ -21,6 +21,8 @@ public interface NewsRepository extends CrudRepository<News, Long> {
 
    public Page<News> findAll(Pageable pageable);
 
+   public Page<News> findByCategory(Pageable pageable,String category);
+
    public News findById(int id);
 
    @Transactional

@@ -30,20 +30,21 @@
 				<div>
 					<dl id="iteam-lantern">
 						<dt> <a href="javascript:;">广告设置</a> <i class="ico"></i> </dt>
-						<dd> <a th:href="@{/admin/manger/gethengfulist}" >广告位</a> </dd>
-						<dd> <a th:href="@{/admin/manger/addhengfu}">添加横幅</a> </dd>
+						<dd th:class="${local eq 1}?'on'"> <a th:href="@{/admin/manger/gethengfulist}" >广告位</a> </dd>
+						<dd th:class="${local eq 2}?'on'"> <a th:href="@{/admin/manger/addhengfu}">添加横幅</a> </dd>
 					</dl>
 					<dl id="iteam-article">
 						<dt > <a href="javascript:;">新闻管理</a> <i class="ico"></i> </dt>
-						<dd class='on' > <a th:href="@{/admin/news/addnew}">添加文章</a> </dd>
-						<dd> <a th:href="@{/admin/news/newslist}">内容管理</a> </dd>
-						<dd> <a th:href="@{/admin/news/getcategorylist}">文章分类</a> </dd>
-						<dd> <a th:href="@{/admin/news/addcategory}">添加分类</a> </dd>
+						<!--<dd class='on' > <a th:href="@{/admin/news/addnew}">添加文章</a> </dd>-->
+						<dd th:class="${local eq 3}?'on'"> <a th:href="${addnewsaddress}">添加文章</a> </dd>
+						<dd th:class="${local eq 4}?'on'"> <a th:href="@{/admin/news/newslist}">内容管理</a> </dd>
+						<dd th:class="${local eq 5}?'on'"> <a th:href="@{/admin/news/getcategorylist}">文章分类</a> </dd>
+						<dd th:class="${local eq 6}?'on'">  <a th:href="@{/admin/news/addcategory}">添加分类</a> </dd>
 					</dl>
 				</div>
 				<dl id="iteam-comments" >
 					<dt > <a href="javascript:;">招商留言</a> <i class="ico"></i> </dt>
-					<dd> <a th:href="@{/admin/liuyan/liuyanlist}">留言列表</a> </dd>
+					<dd th:class="${local eq 7}?'on'"> <a th:href="@{/admin/liuyan/liuyanlist}">留言列表</a> </dd>
 				</dl>
 			</div>
 		</div>
@@ -53,8 +54,8 @@
 			<table class="inputform" cellpadding="1" cellspacing="1">
 				<tbody>
 					<tr>
-						<td class="label">留言标题</td>
-						<td class="input" th:text="${data.title}">我对贵公司产品感兴趣</td>
+						<td class="label">城市</td>
+						<td class="input" th:text="${data.city}">我对贵公司产品感兴趣</td>
 					</tr>
 					<tr>
 						<td class="label">留言人</td>
@@ -67,6 +68,10 @@
 					<tr>
 						<td class="label">留言内容</td>
 						<td class="input" th:text="${data.content}">2</td>
+					</tr>
+					<tr>
+						<td class="label">留言Email</td>
+						<td class="input" th:text="${data.email}">2</td>
 					</tr>
 					<tr>
 						<td class="label">留言时间</td>

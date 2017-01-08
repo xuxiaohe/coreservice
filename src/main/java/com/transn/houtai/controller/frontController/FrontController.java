@@ -4,11 +4,9 @@ import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import com.transn.houtai.controller.BaseController;
 import com.transn.houtai.domain.BannerManger;
 import com.transn.houtai.domain.Categorys;
+import com.transn.houtai.domain.Liuyan;
 import com.transn.houtai.domain.News;
-import com.transn.houtai.service.AdminUserService;
-import com.transn.houtai.service.BannerMangerService;
-import com.transn.houtai.service.CategoryService;
-import com.transn.houtai.service.NewsService;
+import com.transn.houtai.service.*;
 import com.transn.houtai.util.FileUpload;
 import com.transn.houtai.util.PageRequestTools;
 import com.transn.houtai.util.StringUtil;
@@ -38,6 +36,9 @@ public class FrontController extends BaseController{
     private BannerMangerService bannerMangerService;
 
 
+    @Autowired
+    private LiuyanService liuyanService;
+
     /*
              *新闻列表页面
              */
@@ -59,10 +60,43 @@ public class FrontController extends BaseController{
         dm2.setSort(sort2);
         Pageable pageable2 = PageRequestTools.pageRequesMake(dm2);
         Page<News> newss = newsService.getallNewsByPage(pageable2);
+
         model.addAttribute("data", bannerMangers);
         model.addAttribute("news", newss);
-        return "/front/index";
+        return "/front/index2";
     }
+
+
+
+    /*
+            *新闻列表页面
+            */
+    @RequestMapping("/about")
+    public String about(Model model,HttpServletRequest request) {
+
+        return "/front/about";
+    }
+
+
+    /*
+           *新闻列表页面
+           */
+    @RequestMapping("/join")
+    public String join(Model model,HttpServletRequest request) {
+
+        return "/front/comment";
+    }
+
+    /*
+               *新闻列表页面
+               */
+    @RequestMapping("/commend")
+    public String commend(Model model, HttpServletRequest request, Liuyan l) {
+        l.setTime(System.currentTimeMillis());
+        liuyanService.saveLiuyan(l);
+        return "/front/comment";
+    }
+
 
 
 

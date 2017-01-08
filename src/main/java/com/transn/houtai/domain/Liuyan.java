@@ -12,12 +12,13 @@ public class Liuyan {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
-    private String title;
+    private String email;
     private String name;
     private String phone;
     private String content;
     private long time;
     private String back;
+    private String city;
     private String ischeck="0";
 
     public int getId() {
@@ -28,13 +29,6 @@ public class Liuyan {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
     public String getName() {
         return name;
@@ -83,4 +77,21 @@ public class Liuyan {
     public void setIscheck(String ischeck) {
         this.ischeck = ischeck;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
 }
