@@ -59,4 +59,11 @@ public class NewsService {
 
 
 
+    public Page<News> getallNewsByPageLike(Pageable page,String name){
+        Page<News> byCategory = newsRepository.findByTitleLike(name,page);
+        return byCategory;
+    }
+
+
+
 }

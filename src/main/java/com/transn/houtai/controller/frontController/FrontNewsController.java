@@ -82,4 +82,24 @@ public class FrontNewsController extends BaseController{
 
 
 
+    /*
+             *新闻列表页面
+             */
+    @RequestMapping("/searchnewslist")
+    public String searchnewslist(Model model,HttpServletRequest request,QueryModelMul dm) {
+        List<String> sort = new ArrayList<String>();
+        sort.add("time");
+        dm.setSort(sort);
+
+        Pageable pageable = PageRequestTools.pageRequesMake(dm);
+        String name=request.getParameter("name");
+        Page<News> bannerMangers = newsService.getallNewsByPageLike(pageable,"%"+name+"%");
+
+        model.addAttribute("data", bannerMangers);
+        model.addAttribute("name", name);
+        return "/front/searchnewslist";
+    }
+
+
+
 }

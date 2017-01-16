@@ -92,8 +92,11 @@ public class FrontController extends BaseController{
                */
     @RequestMapping("/commend")
     public String commend(Model model, HttpServletRequest request, Liuyan l) {
-        l.setTime(System.currentTimeMillis());
-        liuyanService.saveLiuyan(l);
+        if (!StringUtil.isBlank(l.getContent())) {
+            l.setTime(System.currentTimeMillis());
+            liuyanService.saveLiuyan(l);
+        }
+
         return "/front/comment";
     }
 

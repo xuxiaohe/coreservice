@@ -77,6 +77,7 @@ public class BaseController {
 			content = content.replaceAll("<p>", "");
 			content = content.replaceAll("</p>", "");
 			content = content.replaceAll("\\<.*?>", "");
+			content = content.replaceAll("&nbsp;", "");
 			if (content.length()>60) {
 				content=content.substring(0,60)+"...";
 			}

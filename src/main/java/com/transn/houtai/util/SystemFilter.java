@@ -40,7 +40,7 @@ public class SystemFilter implements Filter {
         RestTemplate restTemplate = new RestTemplate();
         //System.out.println("================="+session.getAttribute("name"));
         if(StringUtil.isBlank(name)){
-            wrapper.sendRedirect("/mineproject/login");
+            wrapper.sendRedirect("/login");
             return;
         }
         else {

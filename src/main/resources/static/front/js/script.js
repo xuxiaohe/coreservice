@@ -1,22 +1,119 @@
 $(function(){
 	indexImgPlay();
-	$("header").on("click","a.btn",function(){
-		c = $("header nav .search .search_input").css("visibility");
-		if (c == "hidden") {
-			$("header nav .search").addClass("show_box");
-			$("header nav .search .search_input").css("visibility","visible");
-		} if (c == "visible") {
-			$("header nav .search").removeClass("show_box");
-			$("header nav .search .search_input").css("visibility","hidden");
-		} 
+
+	// host = window.location.host;
+
+	$("header").load("header.html");
+	$("footer").load("footer.html");
+	
+	//顶部导航
+	$fixedNav = $("header");
+	window.onscroll = function(){
+		var $s = $(document).scrollTop();
+		if ($(".page").attr("data-page") == "no_page") {
+
+		} else {
+			if ($s > 70){
+				$fixedNav.addClass("fixed_header");
+			} else {
+				$fixedNav.removeClass("fixed_header");
+			};
+		}
+		
+	};
+	$("header").on("click","nav .search .btn",function(){
+		v = $("header nav .search .search_input").val();
+		// console.log(v)
+		if(v == "") {
+			$("header nav .search .search_input").val("体育公园");
+		}
+	});
+	// $("header").on("click","a.btn",function(){
+	// 	c = $("header nav .search .search_input").css("visibility");
+	// 	if (c == "hidden") {
+	// 		$("header nav").addClass("mini");
+	// 		$("header nav .search").addClass("show_box");
+	// 		$("header nav .search .search_input").css("visibility","visible");
+	// 	} if (c == "visible") {
+	// 		$("header nav").removeClass("mini");
+	// 		$("header nav .search").removeClass("show_box");
+	// 		$("header nav .search .search_input").css("visibility","hidden");
+	// 	} 
+	// });
+	$("footer").on("mouseover mouseout",".wx img",function(event){
+		if(event.type == "mouseover") {
+			$("footer .code").show();
+		} else if (event.type == "mouseout") {
+			$("footer .code").hide();
+		}
+	});
+	$(".side").on("mouseover mouseout",".wx img",function(event){
+		if(event.type == "mouseover") {
+			$(".side .code img").show();
+		} else if (event.type == "mouseout") {
+			$(".side .code img").hide();
+		}
+	});
+	$("header").on("mouseover mouseout",".link.map",function(event){
+		if(event.type == "mouseover") {
+			$(this).find("a").text("暂缓开放");
+		} else if (event.type == "mouseout") {
+			$(this).find("a").text("场馆地图");
+		}
+	});
+	$(".comment_box").on("focus","input[type='text']",function(event){
+		i =  $(this).prev("i").attr("id");
+		v = $(this).val();
+		if ( i == v ) {
+			$(this).val("");
+			$(this).css("color","#333");
+		}
+	});
+	$(".comment_box").on("blur","input[type='text']",function(event){
+		i =  $(this).prev("i").attr("id");
+		v = $(this).val();
+		if ( v == "" ) {
+			$(this).val(i);
+			$(this).css("color","#999");
+		}
 	});
 	//nav
-	$("header ").on('mouseover mouseout','nav .link', function(event){
+	$("header").on('mouseover mouseout','nav .link', function(event){
 		if(event.type == "mouseover"){
 			$(this).find(".mini_menu").show();
 		}else if(event.type == "mouseout"){
 			$(this).find(".mini_menu").hide();
 		};
+	});
+	$(".comment_page").on("click",".submit",function(){
+		v1 = $(".comment_page .comment_form textarea").val();
+		v2 = $(".comment_page .comment_form .name").val();
+		v3 = $(".comment_page .comment_form .contact").val();
+		v4 = $(".comment_page .comment_form .mail").val();
+		v5 = $(".comment_page .comment_form .city").val();
+		if ( v1 == "" ) {
+			alert("请输入留言内容！");
+			return false;
+		} if ( v2 == "" || v2 == "姓名" ) {
+			alert("请输入姓名!");
+			return false;
+		} if ( v3 == "" || v3 == "联系方式" ) {
+			alert("请输入联系方式!");
+			return false;
+		} if ( v4 == "" || v4 == "电子邮箱" ) {
+			alert("请输入电子邮箱!");
+			return false;
+		} if ( v5 == "" || v5 == "所在城市" ) {
+			alert("请输入所在城市!");
+			return false;
+		} else {
+			alert("感谢您的留言，我们会尽快联系您!");
+		}
+	});
+	$("header").on("click",".go_footer",function(){
+		$("html,body").animate({
+			scrollTop: 10000
+		},1000);
 	});
 });
 var indexImgPlay = function() {

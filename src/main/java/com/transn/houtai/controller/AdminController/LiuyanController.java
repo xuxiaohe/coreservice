@@ -7,6 +7,7 @@ import com.transn.houtai.service.AdminUserService;
 import com.transn.houtai.service.LiuyanService;
 import com.transn.houtai.util.Config;
 import com.transn.houtai.util.PageRequestTools;
+import com.transn.houtai.util.StringUtil;
 import com.transn.houtai.util.pages.QueryModelMul;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -72,8 +73,11 @@ public class LiuyanController {
     @RequestMapping("addliuyan")
     public Object addliuyan(Model model, HttpServletRequest request, Liuyan l) {
 
-        l.setTime(System.currentTimeMillis());
-        liuyanService.saveLiuyan(l);
+        if (!StringUtil.isBlank(l.getContent().trim())) {
+            l.setTime(System.currentTimeMillis());
+            liuyanService.saveLiuyan(l);
+        }
+
         return l;
     }
 

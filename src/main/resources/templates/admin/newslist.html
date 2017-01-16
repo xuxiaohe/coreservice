@@ -66,7 +66,7 @@
 					<td th:text="${product.category}"><a href="#">集团动态</a></td>
 					<td  th:text="${#dates.format(product.time,'yyyy-MM-dd')}"><span title="该文章已发布" >2012-01-01</span></td>
 					<td><a th:href="${updatenewsaddress}+'?id='+${product.id}"> 修改</a> |
-						<a th:href="@{/admin/news/deleteNews(id=${product.id})}"> <font color="red">删除</font></a>
+						<a class="del_item" th:href="@{/admin/news/deleteNews(id=${product.id})}"> <font color="red">删除</font></a>
 					</td>
 				</tr>
 			</table>
@@ -84,6 +84,9 @@
                     //     pageCount：总页数
                     // current：当前页
                 });
+                $(".del_item").click(function(){
+                	alert("删除成功！")
+                })
 			</script>
 			<div class="p10">
 				<div class="fr"> 共8条文章 当前1/1页 </div>
