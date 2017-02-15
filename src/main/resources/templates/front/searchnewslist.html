@@ -1,15 +1,15 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8"/>
-<title></title>
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1, maximum-scale=1"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-<meta name="renderer" content="webkit"/>
-<meta name="force-rendering" content="webkit"/>
-<link rel="icon" th:href="@{/front/img/favicon.ico}" type="image/x-icon"/>
-<link rel="shortcut icon" th:href="@{/front/img/favicon.ico}" type="image/x-icon"/>
-<link rel="stylesheet" th:href="@{/front/css/style.css}"/>
+	<meta charset="UTF-8"/>
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1, maximum-scale=1"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta name="renderer" content="webkit"/>
+	<meta name="force-rendering" content="webkit"/>
+	<link rel="icon" th:href="@{/front/img/favicon.ico}" type="image/x-icon"/>
+	<link rel="shortcut icon" th:href="@{/front/img/favicon.ico}" type="image/x-icon"/>
+	<link rel="stylesheet" th:href="@{/front/css/style.css}"/>
 </head>
 <body>
 <header>
@@ -34,14 +34,14 @@
 						<a th:href="@{/news/newslist}">集团动态</a>
 					</div>
 				</li>
-				<li class="link">
+				<li class="link ">
 					<a href="javascript:;">核心产品</a>
 					<div class="mini_menu">
-						<a href="javascript:;" >体育公园</a>
-						<a href="javascript:;" >关于气膜</a>
+						<a th:href="@{/mapview}" >体育公园</a>
+						<a href="http://www.bjselife.com/news/newsinfo?id=66">关于气膜</a>
 					</div>
 				</li>
-				<li class="link">
+				<li class="link map">
 					<a href="javascript:;">场馆地图</a>
 				</li>
 			</ul>
@@ -105,39 +105,53 @@
 	<section class="menu">
 		<div class="max_width fn_clear">
 			<div class="box">
-				<h3>公司产品 </h3>
+				<h3>集团介绍 </h3>
 				<ul>
 					<li>
-						<a href="">体育主题公园</a>
+						<a th:href="@{/about}">公司简介</a>
 					</li>
 					<li>
-						<a href="">体育中心</a>
-					</li>
-					<li>
-						<a href="">体育馆</a>
+						<!-- <a href="javascript:;">合作伙伴</a> -->
 					</li>
 				</ul>
 			</div>
 			<div class="box">
-				<h3>企业动态</h3>
+				<h3>新闻中心</h3>
 				<ul>
 					<li>
-						<a th:href="@{/news/newslist(name='公司动态')}">公司动态</a>
+						<a th:href="@{/news/newslist}">集团新闻</a>
 					</li>
 					<li>
-						<a th:href="@{/news/newslist(name='集团动态')}">集团动态</a>
+						<!-- <a href="javascript:;">活动动态</a> -->
 					</li>
 				</ul>
 			</div>
 			<div class="box">
-				<h3>联系我们</h3>
+				<h3>核心产品</h3>
 				<ul>
 					<li>
-						<a th:href="@{/join}">招商</a>
+						<a href="javascript:;">体育公园</a>
 					</li>
-					<!-- <li>
-						<a href="">集团动态</a>
-					</li> -->
+					<li>
+						<a href="javascript:;">关于气膜</a>
+					</li>
+				</ul>
+			</div>
+			<div class="box">
+				<h3>关于我们</h3>
+				<ul>
+					<li>
+						<!-- <a href="comment.html" >联系方式</a> -->
+					</li>
+					<li>
+						<a th:href="@{/join}">业务合作</a>
+					</li>
+					<li>
+						<!-- <a href="javascript:;">招聘信息</a> -->
+					</li>
+					<li>
+						<a th:href="@{/join}" >意见和建议</a>
+					</li>
 				</ul>
 			</div>
 			<div class="box">
@@ -155,7 +169,8 @@
 						</a>
 					</li>
 					<li>
-						<span class="server">400-521-521</span>
+						<span class="server">010-85819916</span><br />
+						<b>北京市朝阳区朝体中心<br />东侧路甲518号D座一层</b>
 					</li>
 				</ul>
 			</div>

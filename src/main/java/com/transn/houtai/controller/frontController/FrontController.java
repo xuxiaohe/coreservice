@@ -7,6 +7,7 @@ import com.transn.houtai.domain.Categorys;
 import com.transn.houtai.domain.Liuyan;
 import com.transn.houtai.domain.News;
 import com.transn.houtai.service.*;
+import com.transn.houtai.util.Config;
 import com.transn.houtai.util.FileUpload;
 import com.transn.houtai.util.PageRequestTools;
 import com.transn.houtai.util.StringUtil;
@@ -77,6 +78,16 @@ public class FrontController extends BaseController{
         return "/front/about";
     }
 
+
+    /*
+            *新闻列表页面
+            */
+    @RequestMapping("/mapview")
+    public String mapview(Model model,HttpServletRequest request) {
+
+        model.addAttribute("local", Config.LocalService);
+        return "/front/mapview";
+    }
 
     /*
            *新闻列表页面

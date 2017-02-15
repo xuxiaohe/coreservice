@@ -34,14 +34,14 @@
 						<a th:href="@{/news/newslist}">集团新闻</a>
 					</div>
 				</li>
-				<li class="link">
+				<li class="link ">
 					<a href="javascript:;">核心产品</a>
 					<div class="mini_menu">
-						<a href="javascript:;" >体育公园</a>
-						<a href="javascript:;" >关于气膜</a>
+						<a th:href="@{/mapview}" >体育公园</a>
+						<a href="http://www.bjselife.com/news/newsinfo?id=66">关于气膜</a>
 					</div>
 				</li>
-				<li class="link">
+				<li class="link map">
 					<a href="javascript:;">场馆地图</a>
 				</li>
 				<li class="link">
@@ -56,8 +56,10 @@
 			</ul>
 
 			<div class="search show_box">
-				<input type="text" class="search_input" placeholder="体育公园"/>
-				<a href="javascript:;" class="btn"></a>
+				<form th:action="@{/news/searchnewslist}">
+					<input type="text" name="name" class="search_input" value="体育公园"/>
+					<input type="submit" class="btn" value="确认"/>
+				</form>
 			</div>
 		</nav>
 	</div>
@@ -124,7 +126,7 @@
 						<a th:href="@{/about}">公司简介</a>
 					</li>
 					<li>
-						<!-- <a href="">合作伙伴</a> -->
+						<!-- <a href="javascript:;">合作伙伴</a> -->
 					</li>
 				</ul>
 			</div>
@@ -135,7 +137,7 @@
 						<a th:href="@{/news/newslist}">集团新闻</a>
 					</li>
 					<li>
-						<!-- <a href="">活动动态</a> -->
+						<!-- <a href="javascript:;">活动动态</a> -->
 					</li>
 				</ul>
 			</div>
@@ -143,10 +145,10 @@
 				<h3>核心产品</h3>
 				<ul>
 					<li>
-						<a href="">体育公园</a>
+						<a href="javascript:;">体育公园</a>
 					</li>
 					<li>
-						<a href="">关于气膜</a>
+						<a href="javascript:;">关于气膜</a>
 					</li>
 				</ul>
 			</div>
@@ -160,7 +162,7 @@
 						<a th:href="@{/join}">业务合作</a>
 					</li>
 					<li>
-						<!-- <a href="">招聘信息</a> -->
+						<!-- <a href="javascript:;">招聘信息</a> -->
 					</li>
 					<li>
 						<a th:href="@{/join}" >意见和建议</a>

@@ -61,6 +61,24 @@ $(function(){
 			$(this).find("a").text("场馆地图");
 		}
 	});
+	$(".map_tab").on("mouseover mouseout",".link",function(event){
+		if(event.type == "mouseover") {
+			// $(this).addClass("on");
+			$(this).addClass("on").siblings(".link").removeClass("on");
+			$i = $(this).index();
+			$(".map_index .map_tab .photo").hide();
+			$(".map_index .map_tab .photo").eq($i).show();
+		} else if (event.type == "mouseout") {
+			// $(this).removeClass("on");
+		}
+	});
+	$(".map_tab .link").on("click",function(){
+		$(this).addClass("on").siblings(".link").removeClass("on");
+		$i = $(this).index();
+		$(".map_index .map_tab .photo").hide();
+		$(".map_index .map_tab .photo").eq($i).show();
+		// console.log($i);
+	});
 	$(".comment_box").on("focus","input[type='text']",function(event){
 		i =  $(this).prev("i").attr("id");
 		v = $(this).val();
